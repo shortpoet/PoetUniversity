@@ -1,6 +1,7 @@
 using PoetUniversity.Data;
 using PoetUniversity.Data.Models;
 using System;
+using System.IO;
 using System.Linq;
 
 namespace PoetUniversity.Data
@@ -16,7 +17,15 @@ namespace PoetUniversity.Data
         return;   // DB has been seeded
       }
 
+      // StreamReader file = new StreamReader(@".\poet_names_100.txt");
+      string[] poets =  File.ReadAllLines(@".\Data\poet_names_100.txt");
 
+      foreach (string poet  in poets)
+      {
+        Console.WriteLine(poet);
+      }
+
+      Console.ReadKey();
     }
   }
 }
