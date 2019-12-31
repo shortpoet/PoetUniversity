@@ -25,6 +25,14 @@ dotnet add package Microsoft.Extensions.Logging.Debug
 - scaffold student pages
 
 ```
-dotnet aspnet-codegenerator razorpage -m Student -dc PoetUniversity.Data.SchoolContext -udl -outDir Pages\Students --referenceScriptLibraries
+dotnet aspnet-codegenerator razorpage -m Student -dc PoetUniversity.Data.SchoolContext -udl -outDir Pages\\Students --referenceScriptLibraries
+or
+dotnet aspnet-codegenerator razorpage -m Student -dc PoetUniversity.Data.SchoolContext -udl -outDir Pages/Students --referenceScriptLibraries
 ```
 
+- add db seed
+- to create an air of sophistication, names of poets and english spanish, and italian were selected for base data for random seeding
+
+```
+dotnet aspnet-codegenerator razorpage -m Address -dc PoetUniversity.Data.SchoolContext -udl -outDir Pages\\Addresses --referenceScriptLibraries
+```

@@ -118,11 +118,13 @@ namespace PoetUniversity.Data
         var addresses = new Address[limit];
         Random rnd = new Random(seed);
 
-        for (int index = 0; index <= limit; index++)
+        for (int index = 0; index <= limit - 1; index++)
         {
           string[] streetRegion =  File.ReadAllLines(String.Format(@".\Data\street_region_{0}.txt", region.ToString()));
           string[] cityStateRegion =  File.ReadAllLines(String.Format(@".\Data\city_state_region_{0}.txt", region.ToString()));
           string[] streetType =  File.ReadAllLines(@".\Data\street_type_designations.txt");
+
+          int streetNum = rnd.Next(1, 8889);
           int rsr = rnd.Next(0, streetRegion.Count());
           int rcsr = rnd.Next(0, cityStateRegion.Count());
           int rst = rnd.Next(0, streetType.Count());
@@ -135,15 +137,19 @@ namespace PoetUniversity.Data
           city = myTI.ToTitleCase(city);
           state = myTI.ToTitleCase(state);
           
-          static int zipGen(string letter)
+          static string zipGen(string letter)
           {
             string[] letters = {"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
             // add 10 to avoid leading zero and string issues
-            int index = (Array.IndexOf(letters, letter) + 10);
-            return index;
+            string _index = (Array.IndexOf(letters, letter) + 10).ToString();
+            return _index;
           }
 
-          int zip = zipGen(state) + zipGen(city) + zipGen(street);
+          int zip = int.Parse(zipGen(state.Substring(0,1)) + zipGen(city.Substring(0,1)) + zipGen(street.Substring(0,1)));
+
+          // modify after zip assign to avoid leading digit
+          
+          street = streetNum.ToString() + " " + street;
 
           Address a = new Address
           {
@@ -153,7 +159,7 @@ namespace PoetUniversity.Data
             ZipCode = zip
           };
 
-          addresses.Append(a);
+          addresses[index] = a;
 
         }
         return addresses;
