@@ -16,12 +16,59 @@ namespace PoetUniversity.Data
     {
       context.Database.EnsureCreated();
       // Look for any students.
+      if (context.Courses.Any())
+      {
+        return;   // DB has been seeded
+      }
+
+      Address[] addresses1 = context.Addresses.Where(x => x.Region == 1).ToArray();
+
+      static string courseGen(int seed)
+      {
+        string[] rhetorics =  File.ReadAllLines(@".\Data\rhetoric_44.txt");
+        string rhetoric = rhetorics[seed];
+        TextInfo myTI = new CultureInfo("en-US",false).TextInfo;
+        return myTI.ToTitleCase(rhetoric);
+      }
+
+      int seed = 8;
+      Random rnd = new Random(seed);
+
+      var courses = new Course[100];
+
+      for (int index = 0; index <= 100; index++)
+      {
+
+        int rCourse = rnd.Next(0, 44);
+        // 2-5 credits
+        int rCredits = rnd.Next(2, 6);
+
+        int rAddress1 = rnd.Next(0, addresses1.Length);
+
+        Course c = new Course
+        {
+          CourseTitle = courseGen(rCourse),
+          AddressId = addresses1[rAddress1].AddressId,
+          CourseCredits = rCredits
+        };
+
+        courses[index] = c;
+      }
+
+    }
+    public static void InitializeStudents(SchoolContext context)
+    {
+      context.Database.EnsureCreated();
+      // Look for any students.
       if (context.Students.Any())
       {
         return;   // DB has been seeded
       }
 
       // StreamReader file = new StreamReader(@".\poet_names_100.txt");
+
+      Address[] addresses2 = context.Addresses.Where(x => x.Region == 2).ToArray();
+      Address[] addresses3 = context.Addresses.Where(x => x.Region == 3).ToArray();
 
       static string[] nameGen(int seed)
       {
@@ -71,20 +118,19 @@ namespace PoetUniversity.Data
         // 2-5 credits
         int rCredits = rnd.Next(2, 6);
 
+        int rAddress2 = rnd.Next(0, addresses2.Length);
+        int rAddress3 = rnd.Next(0, addresses3.Length);
+
         Student s = new Student
         {
           FirstMidName = nameGen(rName)[0],
           LastName = nameGen(rName)[1],
           EnrollmentDate = DateTime.Parse(String.Format(@"{}-09-01", rYear)),
+          // use enrollment year to "randomize" region
+          AddressId = rYear % 2 == 0 ? addresses2[rAddress2].AddressId : addresses3[rAddress3].AddressId,
         };
 
         students.Append(s);
-
-        Course c = new Course
-        {
-          CourseTitle = courseGen(rCourse),
-
-        };
 
       }
 
@@ -148,7 +194,7 @@ namespace PoetUniversity.Data
           int zip = int.Parse(zipGen(state.Substring(0,1)) + zipGen(city.Substring(0,1)) + zipGen(street.Substring(0,1)));
 
           // modify after zip assign to avoid leading digit
-          
+
           street = streetNum.ToString() + " " + street;
 
           Address a = new Address
@@ -156,7 +202,8 @@ namespace PoetUniversity.Data
             Street = street,
             City = city,
             State = state,
-            ZipCode = zip
+            ZipCode = zip,
+            Region = region
           };
 
           addresses[index] = a;

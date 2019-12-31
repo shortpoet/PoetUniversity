@@ -11,6 +11,7 @@ namespace PoetUniversity.Data.Models
     public DateTime EnrollmentDate { get; set; }
     public int TotalCredits { get; set; }
     public int GPA { get; set; }
+    public Guid AddressId { get; set; }
     public ICollection<CourseEnrollment> CourseEnrollments { get; set; } = new List<CourseEnrollment>();
     public ICollection<GreekOrgEnrollment> GreekOrgEnrollments { get; set; } = new List<GreekOrgEnrollment>();
     public ICollection<ClubEnrollment> ClubEnrollments { get; set; } = new List<ClubEnrollment>();
