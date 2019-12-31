@@ -28,7 +28,7 @@ namespace PoetUniversity
         {
           var context = services.GetRequiredService<SchoolContext>();
           // context.Database.EnsureCreated();
-          DbInitializer.Initialize(context);
+          DbInitializer.InitializeAddy(context);
         }
         catch (Exception ex)
         {

@@ -1,0 +1,44 @@
+synesthesia
+metaphor
+satire
+anthropomorphism
+euphemism
+irony
+onomatopoeia
+humour
+neologism
+allegory
+metonymy
+pun
+spoonerism
+aphorism
+oxymoron
+malapropism
+proverb
+parody
+alliteration
+synecdoche
+rhythm
+hyperbole
+analogy
+simile
+cliché
+paraprosdokian
+innuendo
+non sequitur
+pleonasm
+mimesis
+snowclone
+parable
+allusion
+rhetorical question
+double negative
+pathetic fallacy
+kenning
+assonance
+chiasmus
+antithesis
+litotes
+elision
+dysphemism
+tautology

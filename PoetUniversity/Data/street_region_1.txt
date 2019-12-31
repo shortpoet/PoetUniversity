@@ -1,0 +1,140 @@
+Aluminium
+Gold
+Diamond
+Silver
+Sulfur
+Lead
+Titanium
+Asbestos
+Silicon
+Platinum
+Tungsten
+Quartz
+Arsenic
+Sapphire
+Nickel
+Chromium
+Tin
+Palladium
+Amber
+Ruby
+Urea
+Lapis lazuli
+Obsidian
+Bismuth
+Amethyst
+Graphite
+Emerald
+Opal
+Selenium
+Iridium
+Antimony
+Borax
+Jade
+Gypsum
+Vanadium
+Garnet
+Pyrite
+Turquoise
+Osmium
+Rhodium
+Cadmium
+Topaz
+Alum
+Mica
+
+Archbishop
+Battery
+Bishop
+Carmelo
+Carts
+Castile
+St Elmo
+Old Bakery
+St. Biagio
+Boat
+Bounty
+Bull
+Eagle
+East
+Engineers
+Felix
+G. Cassar
+West
+Knight
+M.A. Vassalli
+Mediterranean
+New
+Republic
+Old Hospital
+Old Mint
+Old Treasury
+Old Theater
+Ordinance
+Great Siege
+King's Garden
+Lascaris Wharf
+Liesse
+Lower Barrakka
+Marsamxett
+Melita
+Merchants
+Mill
+Nelson
+Nix Mangiari Steps
+North
+Pope Pius V
+Scots
+South
+St Andrew's
+St Anne's
+St Anthony's
+St Barbara's Bastion
+St Charles
+St Dominic's
+St Fredrick's
+St George's
+St John's
+St John's Cavalier
+St Joseph
+St Lucy
+St Michael's
+St Nicholas
+St Paul
+St Patrick's
+St Sebastian
+St Ursula
+Zachary
+Christopher
+St Mark
+Spur
+Fountain
+Steps
+Strait
+Quarry Wharf
+St Dominic
+Toni Bajada
+Victory
+Wells
+St Elmo's
+Valletta
+Jean Parisot de Valette
+Jean De Valette
+Castille
+Independence
+Mattia Preti
+Abercrombie's Bastion
+Ball's Bastion
+Castile Bastion
+English Curtain
+French Curtain
+German Curtain
+Lascaris Battery
+Lascaris Bastion
+Lower Castile Bastion
+St Gregory's Bastion
+St James Bastion
+St John's Bastion
+St Lazarus Bastion
+St Michael Bastion
+St Sebastian's Bastion

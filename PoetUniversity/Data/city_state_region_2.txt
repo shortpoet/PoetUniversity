@@ -1,0 +1,535 @@
+Madrid, Madrid
+Barcelona, Barcelona
+Valencia, Valencia
+Sevilla, Sevilla
+Zaragoza, Zaragoza
+Málaga, Málaga
+Murcia, Murcia
+Palma de Mallorca, Islas Baleares
+Las Palmas de Gran Canaria, Las Palmas
+Bilbao, Vizcaya
+Alicante, Alicante
+Córdoba, Córdoba
+Valladolid, Valladolid
+Vigo, Pontevedra
+Gijón, Asturias
+Hospitalet de Llobregat, Barcelona
+Vitoria, Álava
+La Coruña, La Coruña
+Elche, Alicante
+Granada, Granada
+Tarrasa, Barcelona
+Badalona, Barcelona
+Oviedo, Asturias
+Cartagena, Murcia
+Sabadell, Barcelona
+Jerez de la Frontera, Cádiz
+Móstoles, Madrid
+Santa Cruz de Tenerife, Santa Cruz de Tenerife
+Pamplona, Navarra
+Almería, Almería
+Alcalá de Henares, Madrid
+Fuenlabrada, Madrid
+Leganés, Madrid
+San Sebastián, Guipúzcoa
+Getafe, Madrid
+Burgos, Burgos
+Albacete, Albacete
+Santander (España)|Santander, Cantabria
+Castellón de la Plana, Castellón
+Alcorcón, Madrid
+San Cristóbal de La Laguna, Santa Cruz de Tenerife
+Badajoz, Badajoz
+Salamanca, Salamanca
+Huelva, Huelva
+Marbella, Málaga
+Lérida, Lérida
+Tarragona, Tarragona
+Dos Hermanas, Sevilla
+Torrejón de Ardoz, Madrid
+Parla, Madrid
+Mataró, Barcelona
+León, León
+Algeciras, Cádiz
+Santa Coloma de Gramanet, Barcelona
+Alcobendas, Madrid
+Cádiz, Cádiz
+Jaén, Jaén
+Orense, Orense
+Reus, Tarragona
+Telde, Las Palmas
+Gerona, Gerona
+Baracaldo, Vizcaya
+Lugo, Lugo
+Santiago de Compostela, La Coruña
+Cáceres, Cáceres
+Las Rozas de Madrid, Madrid
+San Fernando, Cádiz
+Roquetas de Mar, Almería
+Lorca, Murcia
+San Cugat del Vallés, Barcelona
+El Puerto de Santa María, Cádiz
+San Sebastián de los Reyes, Madrid
+Cornellá de Llobregat, Barcelona
+Melilla, Melilla
+Pozuelo de Alarcón, Madrid
+Rivas-Vaciamadrid, Madrid
+Ceuta, Ceuta
+Guadalajara, Guadalajara
+El Ejido, Almería
+Toledo, Toledo
+Chiclana de la Frontera, Cádiz
+Talavera de la Reina, Toledo
+San Baudilio de Llobregat, Barcelona
+Pontevedra, Pontevedra
+Torrevieja, Alicante
+Coslada, Madrid
+Torrente, Valencia
+Vélez-Málaga, Málaga
+Mijas, Málaga
+Arona, Santa Cruz de Tenerife
+Avilés, Asturias
+Palencia, Palencia
+Guecho, Vizcaya
+Orihuela, Alicante
+Rubí, Barcelona
+Manresa, Barcelona
+Fuengirola, Málaga
+Alcalá de Guadaíra, Sevilla
+Valdemoro, Comunidad de Madrid
+Ciudad Real, Ciudad Real
+Gandía, Valencia
+Santa Lucía de Tirajana, Las Palmas
+Majadahonda, Madrid
+Molina de Segura, Murcia
+Paterna, Valencia
+Torremolinos, Málaga
+Sanlúcar de Barrameda, Cádiz
+Benalmádena, Málaga
+Benidorm, Alicante
+Estepona, Málaga
+Ferrol, La Coruña
+Casteldefels, Barcelona
+Villanueva y Geltrú, Barcelona
+Viladecans, Barcelona
+Sagunto, Valencia
+Ponferrada, León
+El Prat de Llobregat, Barcelona
+Collado Villalba, Madrid
+La Línea de la Concepción, Cádiz
+Irún, Guipúzcoa
+Zamora, Zamora
+Arrecife, Las Palmas
+Granollers, Barcelona
+Motril, Granada
+Mérida, Badajoz
+Aranjuez, Madrid
+Alcoy, Alicante
+Linares, Jaén
+San Vicente del Raspeig, Alicante
+Sardañola del Vallés, Barcelona
+Ávila, Ávila
+Cuenca, Cuenca
+Arganda del Rey, Comunidad de Madrid
+San Bartolomé de Tirajana, Las Palmas
+Boadilla del Monte, Comunidad de Madrid
+Utrera, Sevilla
+Huesca, Huesca
+Elda, Alicante
+Torrelavega, Cantabria
+Segovia, Segovia
+Siero, Asturias
+Pinto, Comunidad de Madrid
+Mollet del Vallés, Barcelona
+Villarreal, Castellón
+Ibiza, Islas Baleares
+Puertollano, Ciudad Real
+Calviá, Islas Baleares
+Colmenar Viejo, Madrid
+Adeje, Santa Cruz de Tenerife
+Portugalete, Vizcaya
+Gavá, Barcelona
+Santurce, Vizcaya
+Esplugas de Llobregat, Barcelona
+Figueras, Gerona
+Granadilla de Abona, Santa Cruz de Tenerife
+Mairena del Aljarafe, Sevilla
+Tres Cantos, Madrid
+Alcira, Valencia
+San Feliú de Llobregat, Barcelona
+Rincón de la Victoria, Málaga
+Vich, Barcelona
+Mislata, Valencia
+Lucena, Córdoba
+Puerto Real, Cádiz
+Denia, Alicante
+Langreo, Asturias
+Alcantarilla, Murcia
+Antequera, Málaga
+Basauri, Vizcaya
+Plasencia, Cáceres
+Manacor, Islas Baleares
+Écija, Sevilla
+San Fernando de Henares, Madrid
+Mieres, Asturias
+Rentería, Guipúzcoa
+Villafranca del Panadés, Barcelona
+Soria, Soria
+Narón, La Coruña
+Blanes, Gerona
+Igualada, Barcelona
+Alhaurín de la Torre, Málaga
+La Rinconada, Sevilla
+Los Palacios y Villafranca, Sevilla
+Puerto del Rosario, Las Palmas
+Andújar, Jaén
+Ripollet, Barcelona
+Burjasot, Valencia
+Arucas, Las Palmas
+Villagarcía de Arosa, Pontevedra
+Don Benito, Badajoz
+Lloret de Mar, Gerona
+Tomelloso, Ciudad Real
+San Adrián de Besós, Barcelona
+Vendrell, Tarragona
+Los Realejos, Santa Cruz de Tenerife
+Santa Eulalia del Río, Islas Baleares
+Marrachí, Islas Baleares
+Miranda de Ebro, Burgos
+Onteniente, Valencia
+Teruel, Teruel
+Tudela, Navarra
+Cieza, Murcia
+Lluchmayor, Islas Baleares
+Oleiros, La Coruña
+Úbeda, Jaén
+Moncada y Reixach, Barcelona
+Águilas, Murcia
+Azuqueca de Henares, Guadalajara
+Burriana, Castellón
+Torre Pacheco, Murcia
+Almendralejo, Badajoz
+Petrel, Alicante
+Ronda, Málaga
+Villena, Alicante
+Yecla, Murcia
+Olot, Gerona
+Tortosa, Tarragona
+Villajoyosa, Alicante
+San Juan Despí, Barcelona
+Cambrils, Tarragona
+Barberá del Vallés, Barcelona
+Aranda de Duero, Burgos
+Galapagar, Madrid
+Castro Urdiales, Cantabria
+Vall de Uxó, Castellón
+San Javier, Murcia
+San Andrés del Rabanedo, León
+Santa Pola, Alicante
+Carballo, La Coruña
+Aldaya, Valencia
+Arteixo, La Coruña
+Arcos de la Frontera, Cádiz
+Totana, Murcia
+Alcázar de San Juan, Ciudad Real
+Inca, Islas Baleares
+Lejona, Vizcaya
+Agüimes, Las Palmas
+Manises, Valencia
+Mazarrón, Murcia
+Camargo, Cantabria
+Ames, La Coruña
+Hellín, Albacete
+Coria del Río, Sevilla
+Ingenio, Las Palmas
+Valdepeñas, Ciudad Real
+Puente Genil, Córdoba
+San Pedro de Ribas, Barcelona
+Alacuás, Valencia
+Culleredo, La Coruña
+San Roque, Cádiz
+Redondela, Pontevedra
+Puerto de la Cruz, Santa Cruz de Tenerife
+Salt, Gerona
+Galdácano, Vizcaya
+Durango, Vizcaya
+Rota, Cádiz
+Játiva, Valencia
+Chirivella, Valencia
+Crevillente, Alicante
+Ciudadela, Islas Baleares
+Carmona, Sevilla
+Níjar, Almería
+Sitges, Barcelona
+Vinaroz, Castellón
+Mahón, Islas Baleares
+Sueca, Valencia
+Morón de la Frontera, Sevilla
+San Vicente dels Horts, Barcelona
+Premiá de Mar, Barcelona
+Sestao, Vizcaya
+Catarroja, Valencia
+Martorell, Barcelona
+Algemesí, Valencia
+San Andrés de la Barca, Barcelona
+Lepe, Huelva
+Lebrija, Sevilla
+Almuñécar, Granada
+Campello, Alicante
+Éibar, Guipúzcoa
+Villaviciosa de Odón, Madrid
+Camas, Sevilla
+Riveira, La Coruña
+Jávea, Alicante
+Navalcarnero, Madrid
+Candelaria, Santa Cruz de Tenerife
+Illescas, Toledo
+Cangas de Morrazo, Pontevedra
+Benicarló, Castellón
+Salou, Tarragona
+Pineda de Mar, Barcelona
+Novelda, Alicante
+Villanueva de la Serena, Badajoz
+San José, Islas Baleares
+Oliva, Valencia
+Almazora, Castellón
+Caravaca de la Cruz, Murcia
+Villarrobledo, Albacete
+Santa Perpetua de Moguda, Barcelona
+Jumilla, Murcia
+Molins de Rey, Barcelona
+Paiporta, Valencia
+Vícar, Almería
+Marín, Pontevedra
+Onda, Castellón
+Tomares, Sevilla
+Cártama, Málaga
+Almansa, Albacete
+Cuart de Poblet, Valencia
+Adra, Almería
+San Pedro del Pinatar, Murcia
+Piélagos, Cantabria
+La Oliva, Las Palmas
+Muchamiel, Alicante
+San Antonio Abad, Islas Baleares
+Alhaurín el Grande, Málaga
+Gáldar, Las Palmas
+Calafell, Tarragona
+Valls, Tarragona
+Erandio, Vizcaya
+Martos, Jaén
+Cambre, La Coruña
+Armilla, Granada
+Alboraya, Valencia
+Calahorra, La Rioja
+Ciempozuelos, Madrid
+Tacoronte, Santa Cruz de Tenerife
+Cambre, La Coruña
+Castellar del Vallés, Barcelona
+Puebla de Vallbona, Valencia
+Ibi, Alicante
+Montilla, Córdoba
+Los Barrios, Cádiz
+Almonte, Huelva
+Torrelodones, Madrid
+El Masnou, Barcelona
+Mairena del Alcor, Sevilla
+Zarauz, Guipúzcoa
+Ponteareas, Pontevedra
+Icod de los Vinos, Santa Cruz de Tenerife
+Mejorada del Campo, Madrid
+San Juan de Alicante, Alicante
+Palafrugell, Gerona
+Priego de Córdoba, Córdoba
+Liria, Valencia
+Barbate, Cádiz
+Bétera, Valencia
+Laguna de Duero, Valladolid
+Castrillón, Asturias
+Conil de la Frontera, Cádiz
+Cullera, Valencia
+Maracena, Granada
+Mondragón, Guipúzcoa
+Vilaseca, Tarragona
+Esparraguera, Barcelona
+San Felíu de Guixols, Gerona
+Alcalá la Real, Jaén
+Altea, Alicante
+Teguise, Las Palmas
+Moncada, Valencia
+San Juan de Aznalfarache, Sevilla
+Ribarroja del Turia, Valencia
+Alfaz del Pi, Alicante
+Coín, Málaga
+Moguer, Huelva
+Pilar de la Horadada, Alicante
+Las Torres de Cotillas, Murcia
+Alhama de Murcia, Murcia
+Palma del Río, Córdoba
+Nerja, Málaga
+Isla Cristina, Huelva
+Mogán, Las Palmas
+La Estrada, Pontevedra
+Alfafar, Valencia
+Medina del Campo, Valladolid
+Cabra, Córdoba
+Baza, Granada
+Amposta, Tarragona
+Loja, Granada
+Ayamonte, Huelva
+Carcagente, Valencia
+Requena, Valencia
+Picasent, Valencia
+Aspe, Alicante
+Guía de Isora, Santa Cruz de Tenerife
+Barañáin, Navarra
+Algete, Madrid
+Calatayud, Zaragoza
+Manlleu, Barcelona
+Lalín, Pontevedra
+Los Llanos de Aridane, Santa Cruz de Tenerife
+Tías, Las Palmas
+Rome, Lazio
+Milan, Lombardy
+Naples, Campania
+Turin, Piedmont
+Palermo, Sicily
+Genoa, Liguria
+Bologna, Emilia-Romagna
+Florence, Tuscany
+Bari, Apulia
+Catania, Sicily
+Venice, Veneto
+Verona, Veneto
+Messina, Sicily
+Padua, Veneto
+Trieste, Friuli-Venezia Giulia
+Brescia, Lombardy
+Taranto, Apulia
+Parma, Emilia-Romagna
+Prato, Tuscany
+Modena, Emilia-Romagna
+Reggio Calabria, Calabria
+Reggio Emilia, Emilia-Romagna
+Perugia, Umbria
+Livorno, Tuscany
+Ravenna, Emilia-Romagna
+Cagliari, Sardinia
+Foggia, Apulia
+Rimini, Emilia-Romagna
+Salerno, Campania
+Ferrara, Emilia-Romagna
+Sassari, Sardinia
+Latina, Lazio
+Giugliano in Campania, Campania
+Monza, Lombardy
+Syracuse, Sicily
+Bergamo, Lombardy
+Pescara, Abruzzo
+Trento, Trentino-Alto Adige
+Forlì, Emilia-Romagna
+Vicenza, Veneto
+Terni, Umbria
+Bolzano, Trentino-Alto Adige
+Novara, Piedmont
+Piacenza, Emilia-Romagna
+Ancona, Marche
+Andria, Apulia
+Udine, Friuli-Venezia Giulia
+Arezzo, Tuscany
+Cesena, Emilia-Romagna
+Lecce, Apulia
+Pesaro, Marche
+Barletta, Apulia
+Alessandria, Piedmont
+La Spezia, Liguria
+Pistoia, Tuscany
+Pisa, Tuscany
+Catanzaro, Calabria
+Guidonia Montecelio, Lazio
+Lucca, Tuscany
+Brindisi, Apulia
+Torre del Greco, Campania
+Treviso, Veneto
+Busto Arsizio, Lombardy
+Como, Lombardy
+Marsala, Sicily
+Grosseto, Tuscany
+Sesto San Giovanni, Lombardy
+Pozzuoli, Campania
+Varese, Lombardy
+Fiumicino, Lazio
+Casoria, Campania
+Asti, Piedmont
+Cinisello Balsamo, Lombardy
+Caserta, Campania
+Gela, Sicily
+Aprilia, Lazio
+Ragusa, Sicily
+Pavia, Lombardy
+Cremona, Lombardy
+Carpi, Emilia-Romagna
+Quartu Sant'Elena, Sardinia
+Lamezia Terme, Calabria
+Altamura, Apulia
+Imola, Emilia-Romagna
+L’Aquila, Abruzzo
+Massa, Tuscany
+Trapani, Sicily
+Viterbo, Lazio
+Cosenza, Calabria
+Potenza, Basilicata
+Castellammare di Stabia, Campania
+Afragola, Campania
+Vittoria, Sicily
+Crotone, Calabria
+Pomezia, Lazio
+Vigevano, Lombardy
+Carrara, Tuscany
+Caltanissetta, Sicily
+Viareggio, Tuscany
+Fano, Marche
+Savona, Liguria
+Matera, Basilicata
+Olbia, Sardinia
+Legnano, Lombardy
+Acerra, Campania
+Marano di Napoli, Campania
+Benevento, Campania
+Molfetta, Apulia
+Agrigento, Sicily
+Faenza, Emilia-Romagna
+Cerignola, Apulia
+Moncalieri, Piedmont
+Foligno, Umbria
+Manfredonia, Apulia
+Tivoli, Lazio
+Cuneo, Piedmont
+Trani, Apulia
+Bisceglie, Apulia
+Bitonto, Apulia
+Bagheria, Sicily
+Anzio, Lazio
+Portici, Campania
+Modica, Sicily
+Sanremo, Liguria
+Avellino, Campania
+Teramo, Abruzzo
+Montesilvano, Abruzzo
+Siena, Tuscany
+Gallarate, Lombardy
+Velletri, Lazio
+Cava de' Tirreni, Campania
+San Severo, Apulia
+Aversa, Campania
+Ercolano, Campania
+Civitavecchia, Lazio
+Acireale, Sicily
+Mazara del Vallo, Sicily
+Rovigo, Veneto
+Pordenone, Friuli-Venezia Giulia
+Battipaglia, Campania
+Rho, Lombardy
+Chieti, Abruzzo
+Scafati, Campania
+Scandicci, Tuscany

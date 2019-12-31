@@ -23,6 +23,7 @@ namespace PoetUniversity.Data
     public DbSet<GreekOrgEnrollment> GreekOrgEnrollments { get; set; }
     public DbSet<ClubEnrollment> ClubEnrollments { get; set; }
     public DbSet<SportEnrollment> SportEnrollments { get; set; }
+    public DbSet<Address> Addresses { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -34,6 +35,7 @@ namespace PoetUniversity.Data
       modelBuilder.Entity<GreekOrgEnrollment>().ToTable("GreekOrgEnrollment");
       modelBuilder.Entity<ClubEnrollment>().ToTable("ClubEnrollment");
       modelBuilder.Entity<SportEnrollment>().ToTable("SportEnrollment");
+      modelBuilder.Entity<Address>().ToTable("Address");
     }    
   }
 }
