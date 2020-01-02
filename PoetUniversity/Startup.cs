@@ -10,6 +10,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using PoetUniversity.Data;
+using VueCliMiddleware;
+
 
 namespace PoetUniversity
 {
@@ -31,6 +33,11 @@ namespace PoetUniversity
         options.UseSqlite(Configuration.GetConnectionString("SchoolContext")));
       // services.AddDbContext<SchoolContext>(options =>
       //   options.UseSqlServer(Configuration.GetConnectionString("SchoolContext")));
+      services.AddSpaStaticFiles(configuration =>
+      {
+          configuration.RootPath = "ClientApp/dist";
+      });
+
     }
 
       // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,6 +65,16 @@ namespace PoetUniversity
       {
         endpoints.MapRazorPages();
       });
+      app.UseSpa(spa =>
+      {
+        spa.Options.SourcePath = "ClientApp";
+
+        if (env.IsDevelopment())
+        {
+          spa.UseVueCli(npmScript: "serve", port: 8080);
+        }
+      });
+
     }
   }
 }

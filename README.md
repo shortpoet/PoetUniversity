@@ -41,3 +41,7 @@ TODO
 choose place for uni addresses
 add enrollments
 use all 44 rhetorics for courses instead of random
+
+- add code taken from scaffolded react web app
+
+- vue cli create
