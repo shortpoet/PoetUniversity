@@ -36,3 +36,8 @@ dotnet aspnet-codegenerator razorpage -m Student -dc PoetUniversity.Data.SchoolC
 ```
 dotnet aspnet-codegenerator razorpage -m Address -dc PoetUniversity.Data.SchoolContext -udl -outDir Pages\\Addresses --referenceScriptLibraries
 ```
+
+TODO
+choose place for uni addresses
+add enrollments
+use all 44 rhetorics for courses instead of random
