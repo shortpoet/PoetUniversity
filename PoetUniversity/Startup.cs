@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
+
 using PoetUniversity.Data;
 using VueCliMiddleware;
 
@@ -29,6 +30,8 @@ namespace PoetUniversity
     {
       services.AddRazorPages();
 
+      services.AddControllersWithViews();
+
       services.AddDbContext<SchoolContext>(options =>
         options.UseSqlite(Configuration.GetConnectionString("SchoolContext")));
       // services.AddDbContext<SchoolContext>(options =>
@@ -36,6 +39,16 @@ namespace PoetUniversity
       services.AddSpaStaticFiles(configuration =>
       {
           configuration.RootPath = "ClientApp/dist";
+      });
+      services.AddCors(options =>
+      {
+        // this defines a CORS policy called "default"
+        options.AddPolicy("default", policy =>
+        {
+          policy.WithOrigins("http://localhost:8080")
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+        });
       });
 
     }
@@ -58,13 +71,19 @@ namespace PoetUniversity
       app.UseStaticFiles();
 
       app.UseRouting();
-
+      app.UseCors("default");
       app.UseAuthorization();
 
       app.UseEndpoints(endpoints =>
       {
         endpoints.MapRazorPages();
+
+        endpoints.MapControllerRoute(
+          name: "default",
+          pattern: "{controller}/{action=Index}/{id?}");
+
       });
+
       app.UseSpa(spa =>
       {
         spa.Options.SourcePath = "ClientApp";
