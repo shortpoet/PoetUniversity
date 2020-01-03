@@ -58,7 +58,7 @@ namespace IdentityServer
 
                     AllowOfflineAccess = true,
                     // AllowedScopes = { "openid", "profile", "api1" }
-                    
+
                     AllowedScopes = new List<string>
                     {
                       IdentityServerConstants.StandardScopes.OpenId,
