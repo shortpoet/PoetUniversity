@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace IdentityServer
 {
@@ -63,17 +64,38 @@ namespace IdentityServer
             // not recommended for production - you need to store your key material somewhere secure
             builder.AddDeveloperSigningCredential();
 
-            services.AddAuthentication()
-                .AddGoogle(options =>
-                {
-                    options.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
+            JwtSecurityTokenHandler.DefaultMapInboundClaims = false;
 
-                    // register your IdentityServer with Google at https://console.developers.google.com
-                    // enable the Google+ API
-                    // set the redirect URI to http://localhost:5000/signin-google
-                    options.ClientId = "copy client ID from Google here";
-                    options.ClientSecret = "copy client secret from Google here";
-                });
+            services.AddAuthentication(options =>
+              {
+                options.DefaultScheme = "Cookies";
+                options.DefaultChallengeScheme = "oidc";
+              })
+
+              .AddCookie("Cookies")
+
+              .AddOpenIdConnect("oidc", options =>
+                {
+                  options.Authority = "https://localhost:5003";
+                  options.RequireHttpsMetadata = false;
+
+                  options.ClientId = "mvc";
+                  options.ClientSecret = "secret";
+                  options.ResponseType = "code";
+
+                  options.SaveTokens = true;
+                })
+            
+              .AddGoogle(options =>
+              {
+                options.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
+
+                // register your IdentityServer with Google at https://console.developers.google.com
+                // enable the Google+ API
+                // set the redirect URI to http://localhost:5000/signin-google
+                options.ClientId = "copy client ID from Google here";
+                options.ClientSecret = "copy client secret from Google here";
+              });
         }
 
         public void Configure(IApplicationBuilder app)
@@ -86,11 +108,14 @@ namespace IdentityServer
             app.UseStaticFiles();
 
             app.UseRouting();
+
             app.UseIdentityServer();
             app.UseAuthorization();
+            app.UseAuthentication();
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapDefaultControllerRoute();
+                endpoints.MapDefaultControllerRoute()
+                  .RequireAuthorization();
             });
         }
     }
