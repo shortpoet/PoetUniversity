@@ -45,3 +45,16 @@ use all 44 rhetorics for courses instead of random
 - add code taken from scaffolded react web app
 
 - vue cli create
+
+- scaffold (Identity Server)[http://docs.identityserver.io/en/latest/quickstarts/2_interactive_aspnetcore.html] using templage
+```
+dotnet new is4ui
+```
+or
+```
+dotnet new is4inmem
+```
+
+- add packages copied from csproj
+
+- 
