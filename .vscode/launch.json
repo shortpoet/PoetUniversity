@@ -10,9 +10,9 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/PoetUniversity/bin/Debug/netcoreapp3.0/PoetUniversity.dll",
+            "program": "${workspaceFolder}/PoetUniversity/bin/Debug/netcoreapp3.0/IdentityServer.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/PoetUniversity",
+            "cwd": "${workspaceFolder}/IdentityServer",
             "stopAtEntry": false,
             // Enable launching a web browser when ASP.NET Core starts. For more information: https://aka.ms/VSCode-CS-LaunchJson-WebBrowser
             "serverReadyAction": {

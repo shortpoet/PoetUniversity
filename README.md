@@ -56,4 +56,10 @@ use all 44 rhetorics for courses instead of random
   dotnet new is4inmem
   ```
 
-- 
+- configure identity server mvc client
+  - callapi, login, logout
+  - json.cshtml in shared folder
+  - make sure to mathc secret, et al.
+
+- add identity controller api endpoint
+  - jwt 
