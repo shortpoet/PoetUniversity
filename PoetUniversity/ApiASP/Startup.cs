@@ -35,6 +35,17 @@ namespace PoetUniversity
 
       services.AddControllersWithViews();
 
+      // added to enable identity controller token check
+      services.AddAuthentication("Bearer")
+        .AddJwtBearer("Bearer", options =>
+        {
+            options.Authority = "https://localhost:5003";
+            options.RequireHttpsMetadata = false;
+
+            options.Audience = "api1";
+        });
+
+
       services.AddDbContext<SchoolContext>(options =>
         options.UseSqlite(Configuration.GetConnectionString("SchoolContext")));
       // services.AddDbContext<SchoolContext>(options =>
@@ -75,6 +86,8 @@ namespace PoetUniversity
 
       app.UseRouting();
       app.UseCors("default");
+      // added to enable identity api token check
+      app.UseAuthentication();
       app.UseAuthorization();
 
       app.UseEndpoints(endpoints =>
