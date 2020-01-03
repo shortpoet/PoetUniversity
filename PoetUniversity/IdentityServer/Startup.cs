@@ -3,7 +3,6 @@
 
 
 using IdentityServer4;
-using IdentityServer4.Quickstart.UI;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -48,13 +47,14 @@ namespace IdentityServer
                 options.Events.RaiseInformationEvents = true;
                 options.Events.RaiseFailureEvents = true;
                 options.Events.RaiseSuccessEvents = true;
-            })
-                .AddTestUsers(TestUsers.Users);
+            });
+                
 
             // in-memory, code config
             builder.AddInMemoryIdentityResources(Config.Ids);
             builder.AddInMemoryApiResources(Config.Apis);
             builder.AddInMemoryClients(Config.Clients);
+            builder.AddTestUsers(TestUsers.Users);
 
             // or in-memory, json config
             //builder.AddInMemoryIdentityResources(Configuration.GetSection("IdentityResources"));

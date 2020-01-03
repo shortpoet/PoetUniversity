@@ -3,6 +3,7 @@
 
 
 using IdentityServer4.Models;
+using IdentityServer4;
 using System.Collections.Generic;
 
 namespace IdentityServer
@@ -10,7 +11,7 @@ namespace IdentityServer
     public static class Config
     {
         public static IEnumerable<IdentityResource> Ids =>
-            new IdentityResource[]
+            new List<IdentityResource>
             {
                 new IdentityResources.OpenId(),
                 new IdentityResources.Profile(),
@@ -27,6 +28,7 @@ namespace IdentityServer
         public static IEnumerable<Client> Clients =>
             new Client[]
             {
+                // machine to machine client (from quickstart 1)
                 // client credentials flow client
                 new Client
                 {
@@ -38,7 +40,7 @@ namespace IdentityServer
 
                     AllowedScopes = { "api1" }
                 },
-
+                // interactive ASP.NET Core MVC client
                 // MVC client using code flow + pkce
                 new Client
                 {
@@ -54,7 +56,12 @@ namespace IdentityServer
                     PostLogoutRedirectUris = { "http://localhost:5003/signout-callback-oidc" },
 
                     AllowOfflineAccess = true,
-                    AllowedScopes = { "openid", "profile", "api1" }
+                    // AllowedScopes = { "openid", "profile", "api1" }
+                    AllowedScopes = new List<string>
+                    {
+                      IdentityServerConstants.StandardScopes.OpenId,
+                      IdentityServerConstants.StandardScopes.Profile
+                    }
                 },
 
                 // SPA client using code flow + pkce

@@ -1,3 +1,5 @@
+@using Microsoft.AspNetCore.Authentication
+
 @{
     var version = typeof(IdentityServer4.Hosting.IdentityServerMiddleware).Assembly.GetName().Version.ToString();
 }
@@ -36,4 +38,25 @@
             </p>
         </div>
     </div>
+
+    <h2>Claims</h2>
+
+    <dl>
+        @foreach (var claim in User.Claims)
+        {
+            <dt>@claim.Type</dt>
+            <dd>@claim.Value</dd>
+        }
+    </dl>
+
+    <h2>Properties</h2>
+
+    <dl>
+        @foreach (var prop in (await Context.AuthenticateAsync()).Properties.Items)
+        {
+            <dt>@prop.Key</dt>
+            <dd>@prop.Value</dd>
+        }
+    </dl>
+    
 </div>
