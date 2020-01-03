@@ -42,7 +42,7 @@ choose place for uni addresses
 add enrollments
 use all 44 rhetorics for courses instead of random
 
-- add code taken from scaffolded react web app
+- add code taken from scaffolded react web app => (medium article)[https://medium.com/software-ateliers/asp-net-core-vue-template-with-custom-configuration-using-cli-3-0-8288e18ae80b]
 
 - vue cli create
 
