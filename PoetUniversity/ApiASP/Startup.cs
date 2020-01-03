@@ -41,7 +41,7 @@ namespace PoetUniversity
       //   options.UseSqlServer(Configuration.GetConnectionString("SchoolContext")));
       services.AddSpaStaticFiles(configuration =>
       {
-          configuration.RootPath = "ClientApp/dist";
+          configuration.RootPath = "../ClientApp";
       });
       services.AddCors(options =>
       {
@@ -89,7 +89,7 @@ namespace PoetUniversity
 
       app.UseSpa(spa =>
       {
-        spa.Options.SourcePath = "ClientApp";
+        spa.Options.SourcePath = "../ClientApp";
 
         if (env.IsDevelopment())
         {
