@@ -25,7 +25,7 @@ namespace PoetUniversity.Data
 
       static string courseGen(int seed)
       {
-        string[] rhetorics =  File.ReadAllLines(@".\Data\rhetoric_44.txt");
+        string[] rhetorics =  File.ReadAllLines(@".\Data\Seed\rhetoric_44.txt");
         string rhetoric = rhetorics[seed];
         TextInfo myTI = new CultureInfo("en-US",false).TextInfo;
         return myTI.ToTitleCase(rhetoric);
@@ -72,7 +72,7 @@ namespace PoetUniversity.Data
 
       static string[] nameGen(int seed)
       {
-        string[] poets =  File.ReadAllLines(@".\Data\poet_names_100.txt");
+        string[] poets =  File.ReadAllLines(@".\Data\Seed\poet_names_100.txt");
         string poet = poets[seed];
         string[] names = poet.Split(' ');
         string[] generatedNames = new string[names.Count()];
@@ -95,7 +95,7 @@ namespace PoetUniversity.Data
 
       static string courseGen(int seed)
       {
-        string[] rhetorics =  File.ReadAllLines(@".\Data\rhetoric_44.txt");
+        string[] rhetorics =  File.ReadAllLines(@".\Data\Seed\rhetoric_44.txt");
         string rhetoric = rhetorics[seed];
         TextInfo myTI = new CultureInfo("en-US",false).TextInfo;
         return myTI.ToTitleCase(rhetoric);
@@ -166,9 +166,9 @@ namespace PoetUniversity.Data
 
         for (int index = 0; index <= limit - 1; index++)
         {
-          string[] streetRegion =  File.ReadAllLines(String.Format(@".\Data\street_region_{0}.txt", region.ToString()));
-          string[] cityStateRegion =  File.ReadAllLines(String.Format(@".\Data\city_state_region_{0}.txt", region.ToString()));
-          string[] streetType =  File.ReadAllLines(@".\Data\street_type_designations.txt");
+          string[] streetRegion =  File.ReadAllLines(String.Format(@".\Data\Seed\street_region_{0}.txt", region.ToString()));
+          string[] cityStateRegion =  File.ReadAllLines(String.Format(@".\Data\Seed\city_state_region_{0}.txt", region.ToString()));
+          string[] streetType =  File.ReadAllLines(@".\Data\Seed\street_type_designations.txt");
 
           int streetNum = rnd.Next(1, 8889);
           int rsr = rnd.Next(0, streetRegion.Count());
