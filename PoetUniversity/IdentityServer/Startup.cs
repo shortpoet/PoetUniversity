@@ -47,14 +47,17 @@ namespace IdentityServer
                 options.Events.RaiseInformationEvents = true;
                 options.Events.RaiseFailureEvents = true;
                 options.Events.RaiseSuccessEvents = true;
-            });
-                
+            })
+              .AddInMemoryIdentityResources(Config.Ids)
+              .AddInMemoryApiResources(Config.Apis)
+              .AddInMemoryClients(Config.Clients)
+              .AddTestUsers(TestUsers.Users); 
 
             // in-memory, code config
-            builder.AddInMemoryIdentityResources(Config.Ids);
-            builder.AddInMemoryApiResources(Config.Apis);
-            builder.AddInMemoryClients(Config.Clients);
-            builder.AddTestUsers(TestUsers.Users);
+            // builder.AddInMemoryIdentityResources(Config.Ids);
+            // builder.AddInMemoryApiResources(Config.Apis);
+            // builder.AddInMemoryClients(Config.Clients);
+            // builder.AddTestUsers(TestUsers.Users);
 
             // or in-memory, json config
             //builder.AddInMemoryIdentityResources(Configuration.GetSection("IdentityResources"));
@@ -64,7 +67,7 @@ namespace IdentityServer
             // not recommended for production - you need to store your key material somewhere secure
             builder.AddDeveloperSigningCredential();
 
-            JwtSecurityTokenHandler.DefaultMapInboundClaims = false;
+            // JwtSecurityTokenHandler.DefaultMapInboundClaims = false;
 
             services.AddAuthentication(options =>
               {
@@ -74,17 +77,17 @@ namespace IdentityServer
 
               .AddCookie("Cookies")
 
-              .AddOpenIdConnect("oidc", options =>
-                {
-                  options.Authority = "https://localhost:5003";
-                  options.RequireHttpsMetadata = false;
+              // .AddOpenIdConnect("oidc", options =>
+              //   {
+              //     options.Authority = "https://localhost:5003";
+              //     options.RequireHttpsMetadata = false;
 
-                  options.ClientId = "mvc";
-                  options.ClientSecret = "secret";
-                  options.ResponseType = "code";
+              //     options.ClientId = "mvc";
+              //     options.ClientSecret = "secret";
+              //     options.ResponseType = "code";
 
-                  options.SaveTokens = true;
-                })
+              //     options.SaveTokens = true;
+              //   })
             
               .AddGoogle(options =>
               {

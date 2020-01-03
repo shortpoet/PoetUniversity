@@ -46,21 +46,24 @@ namespace IdentityServer
                 {
                     ClientId = "mvc",
                     ClientName = "MVC Client",
+                    ClientSecrets = { new Secret("49C1A7E1-0C79-4A89-A3D6-A37998FB86B0".Sha256()) },
 
                     AllowedGrantTypes = GrantTypes.CodeAndClientCredentials,
                     RequirePkce = true,
-                    ClientSecrets = { new Secret("49C1A7E1-0C79-4A89-A3D6-A37998FB86B0".Sha256()) },
+                    RequireConsent = false,
 
-                    RedirectUris = { "http://localhost:5003/signin-oidc" },
-                    FrontChannelLogoutUri = "http://localhost:5003/signout-oidc",
-                    PostLogoutRedirectUris = { "http://localhost:5003/signout-callback-oidc" },
+                    RedirectUris = { "https://localhost:5002/signin-oidc" },
+                    FrontChannelLogoutUri = "https://localhost:5002/signout-oidc",
+                    PostLogoutRedirectUris = { "https://localhost:5002/signout-callback-oidc" },
 
                     AllowOfflineAccess = true,
                     // AllowedScopes = { "openid", "profile", "api1" }
+                    
                     AllowedScopes = new List<string>
                     {
                       IdentityServerConstants.StandardScopes.OpenId,
-                      IdentityServerConstants.StandardScopes.Profile
+                      IdentityServerConstants.StandardScopes.Profile,
+                      "api1"
                     }
                 },
 
