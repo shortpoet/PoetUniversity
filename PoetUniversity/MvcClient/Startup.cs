@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -36,10 +37,17 @@ namespace MvcClient
             options.ClientId = "mvc";
             options.ClientSecret = "49C1A7E1-0C79-4A89-A3D6-A37998FB86B0";
             options.ResponseType = "code";
+            options.GetClaimsFromUserInfoEndpoint = true;
+
+            options.ClaimActions.MapJsonKey("location", "location");
 
             options.SaveTokens = true;
 
             options.Scope.Add("api1");
+            // adding additional scope
+            options.Scope.Add("api2.full_access");
+            options.Scope.Add("location");
+            // options.Scope.Add("custom.profile.test");
             options.Scope.Add("offline_access");
 
         });
