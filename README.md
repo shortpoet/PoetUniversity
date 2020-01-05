@@ -37,16 +37,11 @@ dotnet aspnet-codegenerator razorpage -m Student -dc PoetUniversity.Data.SchoolC
 dotnet aspnet-codegenerator razorpage -m Address -dc PoetUniversity.Data.SchoolContext -udl -outDir Pages\\Addresses --referenceScriptLibraries
 ```
 
-TODO
-choose place for uni addresses
-add enrollments
-use all 44 rhetorics for courses instead of random
-
-- add code taken from scaffolded react web app => (medium article)[https://medium.com/software-ateliers/asp-net-core-vue-template-with-custom-configuration-using-cli-3-0-8288e18ae80b]
+- add code taken from scaffolded react web app => [medium article](https://medium.com/software-ateliers/asp-net-core-vue-template-with-custom-configuration-using-cli-3-0-8288e18ae80b)
 
 - vue cli create
 
-- scaffold (Identity Server)[http://docs.identityserver.io/en/latest/quickstarts/2_interactive_aspnetcore.html] using template
+- scaffold [Identity Server](http://docs.identityserver.io/en/latest/quickstarts/2_interactive_aspnetcore.html) using template
   - only UI
   ```
   dotnet new is4ui
@@ -63,3 +58,24 @@ use all 44 rhetorics for courses instead of random
 
 - add identity controller api endpoint
   - jwt 
+
+- [define additional identity resources](http://docs.identityserver.io/en/latest/topics/resources.html#defining-identity-resources)
+  - in identity server 
+    - add scope to client pointing to identity resource that matches user claims in api definition and user
+  - in client
+    - add scope to access api named in id server config
+    - [map claims](https://leastprivilege.com/2017/11/15/missing-claims-in-the-asp-net-core-2-openid-connect-handler/)
+    - ```
+      options.GetClaimsFromUserInfoEndpoint = true;
+
+      options.ClaimActions.MapJsonKey("location", "location");
+      ```
+
+### TODO
+- Data Seeding
+  - choose place for uni addresses
+  - add enrollments
+  - use all 44 rhetorics for courses instead of random
+- Security
+  - (?) http://localhost:5000 => redirects to https://localhost:5001 (Poet University ASPNet Index)
+  - (?) http://localhost:5002 => redirects to https://localhost:5003/Account/Login (Identity Server Login Page)
