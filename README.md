@@ -37,6 +37,23 @@ dotnet aspnet-codegenerator razorpage -m Student -dc PoetUniversity.Data.SchoolC
 dotnet aspnet-codegenerator razorpage -m Address -dc PoetUniversity.Data.SchoolContext -udl -outDir Pages\\Addresses --referenceScriptLibraries
 ```
 
+- [enable secret storate](https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-3.1&tabs=windows#enable-secret-storage)
+    ```
+    dotnet user-secrets init
+    ```
+    - 
+
+- [add other auth](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/social/other-logins?view=aspnetcore-3.1)
+    -[nuget search for "owners:aspnet-contrib title:OAuth"](https://www.nuget.org/packages?q=owners%3Aaspnet-contrib+title%3AOAuth)
+    - [github info blog post](https://www.jerriepelser.com/blog/authenticate-oauth-aspnet-core-2/)
+    -[oauth providers nuget package github](https://github.com/aspnet-contrib/AspNet.Security.OAuth.Providers)
+
+- add github auth
+    ```
+    dotnet add package AspNet.Security.OAuth.GitHub --version 3.0.0
+    ```
+
+
 TODO
 choose place for uni addresses
 add enrollments
