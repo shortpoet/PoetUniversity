@@ -41,7 +41,13 @@ dotnet aspnet-codegenerator razorpage -m Address -dc PoetUniversity.Data.SchoolC
     ```
     dotnet user-secrets init
     ```
-    - 
+    - Set multiple secrets
+
+        -A batch of secrets can be set by piping JSON to the set command. In the following example, the input.json file's  contents are piped to the set command.
+        ```
+        type .\input.json | dotnet user-secrets set
+        echo .\input.json | dotnet user-secrets set
+        ```
 
 - [add other auth](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/social/other-logins?view=aspnetcore-3.1)
     -[nuget search for "owners:aspnet-contrib title:OAuth"](https://www.nuget.org/packages?q=owners%3Aaspnet-contrib+title%3AOAuth)
@@ -53,11 +59,6 @@ dotnet aspnet-codegenerator razorpage -m Address -dc PoetUniversity.Data.SchoolC
     dotnet add package AspNet.Security.OAuth.GitHub --version 3.0.0
     ```
 
-
-TODO
-choose place for uni addresses
-add enrollments
-use all 44 rhetorics for courses instead of random
 
 - add code taken from scaffolded react web app => (medium article)[https://medium.com/software-ateliers/asp-net-core-vue-template-with-custom-configuration-using-cli-3-0-8288e18ae80b]
 
