@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.IdentityModel.Tokens.Jwt;
+using Microsoft.IdentityModel.Logging;
 
 namespace IdentityServer
 {
@@ -97,9 +98,16 @@ namespace IdentityServer
                 // register your IdentityServer with Google at https://console.developers.google.com
                 // enable the Google+ API
                 // set the redirect URI to http://localhost:5000/signin-google
-                options.ClientId = "copy client ID from Google here";
-                options.ClientSecret = "copy client secret from Google here";
-              });
+                options.ClientId = Configuration["PoetUniversity:Google:ClientId"];
+                options.ClientSecret = Configuration["PoetUniversity:Google:ClientSecret"];
+              })
+            .AddGitHub(options =>
+            {
+                options.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
+                options.ClientId = Configuration["PoetUniversity:Github:ClientId"];
+                options.ClientSecret = Configuration["PoetUniversity:Github:ClientSecret"];
+                options.Scope.Add("user:email");
+            });
         }
 
         public void Configure(IApplicationBuilder app)
@@ -107,7 +115,15 @@ namespace IdentityServer
             if (Environment.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                IdentityModelEventSource.ShowPII = true;
             }
+
+            // https://github.com/aspnet-contrib/AspNet.Security.OAuth.Providers/blob/dev/samples/Mvc.Client/Startup.cs
+            // Required to serve files with no extension in the .well-known folder
+            var options = new StaticFileOptions()
+            {
+                ServeUnknownFileTypes = true,
+            };
 
             app.UseStaticFiles();
 
