@@ -59,7 +59,10 @@ namespace PoetUniversity
         // this defines a CORS policy called "default"
         options.AddPolicy("default", policy =>
         {
-          policy.WithOrigins("http://localhost:8080")
+          // policy.WithOrigins("http://localhost:8080;https://localhost:5004;https://localhost:5003")
+          // policy.WithOrigins("https://localhost:5004")
+          // for some reason it won't recognize the urls if not allow all
+          policy.AllowAnyOrigin()
             .AllowAnyHeader()
             .AllowAnyMethod();
         });

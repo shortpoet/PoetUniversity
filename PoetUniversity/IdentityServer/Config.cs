@@ -112,6 +112,7 @@ public static class Config
         FrontChannelLogoutUri = "https://localhost:5002/signout-oidc",
         PostLogoutRedirectUris = { "https://localhost:5002/signout-callback-oidc" },
 
+        // enables support for refresh tokens
         AllowOfflineAccess = true,
         // AllowedScopes = { "openid", "profile", "api1" }
 
@@ -135,7 +136,7 @@ public static class Config
       {
         ClientId = "spa",
         ClientName = "SPA Client",
-        ClientUri = "http://identityserver.io",
+        ClientUri = "https://identityserver.io",
 
         AllowedGrantTypes = GrantTypes.Code,
         RequirePkce = true,
@@ -143,16 +144,45 @@ public static class Config
 
         RedirectUris =
         {
-          "http://localhost:5002/index.html",
-          "http://localhost:5002/callback.html",
-          "http://localhost:5002/silent.html",
-          "http://localhost:5002/popup.html",
+          "https://localhost:5002/index.html",
+          "https://localhost:5002/callback.html",
+          "https://localhost:5002/silent.html",
+          "https://localhost:5002/popup.html",
         },
 
-        PostLogoutRedirectUris = { "http://localhost:5002/index.html" },
-        AllowedCorsOrigins = { "http://localhost:5002" },
+        PostLogoutRedirectUris = { "https://localhost:5002/index.html" },
+        AllowedCorsOrigins = { "https://localhost:5002" },
 
         AllowedScopes = { "openid", "profile", "api1" }
+      },
+      // JavaScript Client
+      new Client
+      {
+        ClientId = "js",
+        ClientName = "JavaScript Client",
+
+        AllowedGrantTypes = GrantTypes.Code,
+        RequirePkce = true,
+        RequireClientSecret = false,
+        AllowAccessTokensViaBrowser = true,
+
+
+        RedirectUris =           { "https://localhost:5004/callback.html" },
+        PostLogoutRedirectUris = { "https://localhost:5004/index.html" },
+        // AllowedCorsOrigins =     { "https://localhost:5004;https://localhost:5003" },
+        AllowedCorsOrigins =     { "https://localhost:5004" },
+
+        // enables support for refresh tokens
+        AllowOfflineAccess = true,
+
+        AllowedScopes = new List<string>
+        {
+          IdentityServerConstants.StandardScopes.OpenId,
+          IdentityServerConstants.StandardScopes.Profile,
+          "location",
+          "api1",
+          "api2.full_access"
+        }
       }
     };
   }

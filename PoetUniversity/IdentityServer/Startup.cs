@@ -108,6 +108,17 @@ namespace IdentityServer
                 options.ClientSecret = Configuration["PoetUniversity:Github:ClientSecret"];
                 options.Scope.Add("user:email");
             });
+
+            services.AddCors(options => {
+              // this defines a CORS policy called "default"
+              options.AddPolicy("default", policy =>
+              {
+                // policy.WithOrigins("https://localhost:5004;https://localhost:5001;https://localhost:5003")
+                policy.WithOrigins("https://localhost:5004")
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+              });
+            });
         }
 
         public void Configure(IApplicationBuilder app)
@@ -126,12 +137,17 @@ namespace IdentityServer
             };
 
             app.UseStaticFiles();
+            
+            // order here is important
 
             app.UseRouting();
 
+            app.UseCors("default");
+
             app.UseIdentityServer();
-            app.UseAuthorization();
+
             app.UseAuthentication();
+            app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapDefaultControllerRoute()
