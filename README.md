@@ -46,7 +46,7 @@ dotnet aspnet-codegenerator razorpage -m Address -dc PoetUniversity.Data.SchoolC
         -A batch of secrets can be set by piping JSON to the set command. In the following example, the input.json file's  contents are piped to the set command.
         ```
         type .\input.json | dotnet user-secrets set
-        echo .\input.json | dotnet user-secrets set
+        cat .\input.json | dotnet user-secrets set
         ```
 
 - [add other auth](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/social/other-logins?view=aspnetcore-3.1)
@@ -93,6 +93,10 @@ dotnet aspnet-codegenerator razorpage -m Address -dc PoetUniversity.Data.SchoolC
 
       options.ClaimActions.MapJsonKey("location", "location");
       ```
+
+## Useful Links:
+
+- [IdentityServer4 IdentityModel helper library for claims-based identity OAuth2.0 and OpenID Connect](https://github.com/IdentityModel/IdentityModel.AspNetCore)
 
 ### TODO
 - Data Seeding
