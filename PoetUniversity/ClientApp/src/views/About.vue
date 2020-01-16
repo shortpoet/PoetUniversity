@@ -9,17 +9,14 @@
     </b-row>
     <b-row>
       <b-col>
-        <b-table
-          responsive
-          striped
-          hover
-          selectable
-          select-mode="single"
-          :items="items"
-          :fields="fields"
-          @row-selected="onRowSelected"
+        <div
+          id="weather"
+          v-if="weatherLoaded"
         >
-        </b-table>
+          <TableComp
+            :items="weather"
+          />
+        </div>
       </b-col>
     </b-row>
     <b-row>
@@ -36,6 +33,9 @@
 <script>
 import axios from 'axios'
 import Oidc from 'oidc-client'
+// import { mapGetters } from 'vuex'
+import endpoints from '@/store/api-endpoints'
+import TableComp from '@/components/TableComp'
 
 var config = {
   authority: 'https://localhost:5003',
@@ -53,11 +53,14 @@ export default {
   props: {
     msg: String
   },
+  components: {
+    TableComp
+  },
   data () {
     return {
       weather: ['no data yet'],
-      items: [],
-      fields: []
+      weatherLoaded: false,
+      items: []
     }
   },
   methods: {
@@ -74,7 +77,7 @@ export default {
     },
     api1: function () {
       mgr.getUser().then(function (user) {
-        var url = 'http://localhost:5001/identity'
+        var url = endpoints.index.BACKEND_PREFIX_DEV + endpoints.auth.IDENTITY_API
         var xhr = new XMLHttpRequest()
         xhr.open('GET', url)
         xhr.onload = function () {
@@ -85,7 +88,7 @@ export default {
       })
     },
     api2: function () {
-      const url = 'https://localhost:5001/WeatherForecast'
+      var url = endpoints.index.BACKEND_PREFIX_DEV + endpoints.auth.WEATHER_API
       fetch(url)
         .then(response => response.text()
           // .json(), etc.
@@ -96,91 +99,15 @@ export default {
     },
     async callApi () {
       try {
-        const response = await axios.get('https://localhost:5001/WeatherForecast')
+        const response = await axios.get(endpoints.index.BACKEND_PREFIX_DEV + endpoints.auth.WEATHER_API)
         console.log(response)
-        this.fields = this.parseFields(response.data[0])
-        this.items = response.data
-        console.log(this.fields)
-        console.log(this.items)
+        this.weather = response.data
+        this.weatherLoaded = true
+        console.log('weather')
+        console.log(this.weather)
       } catch (err) {
         this.weather.push('Ooops!' + err)
       }
-    },
-    parseFields (datum, casing, sortable) {
-      // make sure to leave quotes off regex
-      var regex = new RegExp(/([A-Z][a-z])/g)
-      var replacement = ' $1'
-      var recase = (field) => {
-        return field.replace(regex, replacement).replace('/^./', s => s.toUpperCase())
-      }
-      var sort = []
-      if (sortable == null) {
-        sort = Object.keys(datum).map(x => true)
-      } else {
-        sort = sortable
-      }
-      if (typeof datum === 'object' && datum !== null) {
-        return Object.keys(datum).map((x, i) => ({
-          'key': x,
-          'label': recase(x),
-          'sortable': sort[i]
-        }))
-      } else {
-        throw new TypeError('This function is for an object')
-      }
-    },
-    onRowSelected: function (items) {
-      if (items[0] !== undefined) {
-        var keys = this.fields.map((x, i) => { return x.key })
-        var _keys = this.fields.map((x, i) => { return { key: x.key, index: i } })
-        var labels = this.fields.map((x, i) => { return { index: i, key: x.label } })
-        console.log(keys)
-        console.log(_keys)
-        console.log(labels)
-        Object.entries(items[0]).forEach(([k, v], i) => {
-          if (keys.includes(k)) {
-            var index = _keys.filter(_k => _k.key === k)[0].index
-            var label = labels.filter(l => l.index === index)[0]
-            console.log(index)
-            console.log(k)
-            console.log(`${label.key}: ${v}`)
-          }
-        })
-      }
-    },
-    logContent: function () {
-      var keys = this.fields.map((x, i) => { return x.key })
-      var _keys = this.fields.map((x, i) => { return { key: x.key, index: i } })
-      var labels = this.fields.map((x, i) => { return { index: i, key: x.label } })
-      console.log(keys)
-      console.log(_keys)
-      console.log(labels)
-      Object.entries(this.stepGroup[0]).forEach(([k, v], i) => {
-        if (keys.includes(k)) {
-          var index = _keys.filter(_k => _k.key === k)[0].index
-          var label = labels.filter(l => l.index === index)[0]
-          console.log(index)
-          console.log(k)
-          console.log(`${label.key}: ${v}`)
-        }
-      })
-    },
-    logContent2: function () {
-      var keys = this.fields.map((x, i) => { return x.key })
-      var _keys = this.fields.map((x, i) => { return { key: x.key, index: i } })
-      var labels = this.fields.map((x, i) => { return { index: i, key: x.label } })
-      console.log(keys)
-      console.log(_keys)
-      console.log(labels)
-      Object.entries(this.stepGroup[0]).forEach(([k, v], i) => {
-        if (keys.includes(k)) {
-          var index = _keys.filter(_k => _k.key === k)[0].index
-          var label = labels.filter(l => l.index === index)[0]
-          console.log(index)
-          console.log(k)
-          console.log(`${label.key}: ${v}`)
-        }
-      })
     }
   }
 }

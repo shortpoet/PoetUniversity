@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import VueCookies from 'vue-cookies'
 
+import StoreAuth from '@/store/modules/StoreAuth'
 import StoreParts from '@/store/modules/StoreParts'
 
 import {
@@ -27,7 +28,8 @@ export const rootGetters = {
 
 export default new Vuex.Store({
   modules: {
-    parts: StoreParts
+    parts: StoreParts,
+    auth: StoreAuth
   },
   state: {
     environment: process.env.NODE_ENV === 'development' ? 'development' : 'production',
