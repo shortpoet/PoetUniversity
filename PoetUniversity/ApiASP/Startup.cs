@@ -9,10 +9,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.AspNetCore.Authentication;
 
 using PoetUniversity.Data;
 using VueCliMiddleware;
-
 
 namespace PoetUniversity
 {
@@ -36,15 +37,43 @@ namespace PoetUniversity
       services.AddControllersWithViews();
 
       // added to enable identity controller token check
-      services.AddAuthentication("Bearer")
-        .AddJwtBearer("Bearer", options =>
-        {
-            options.Authority = "https://localhost:5003";
-            options.RequireHttpsMetadata = false;
+      // services.AddAuthentication("Bearer")
+      //   .AddJwtBearer("Bearer", options =>
+      //   {
+      //       options.Authority = "https://localhost:5003";
+      //       options.RequireHttpsMetadata = false;
 
-            options.Audience = "api1";
-        });
+      //       options.Audience = "api1";
+      //   });
 
+        services.AddAuthentication(options =>
+          {
+              options.DefaultScheme = "Cookies";
+              options.DefaultChallengeScheme = "oidc";
+          })
+          .AddCookie("Cookies")
+          .AddOpenIdConnect("oidc", options =>
+          {
+              options.Authority = "https://localhost:5003";
+              options.RequireHttpsMetadata = false;
+
+              options.ClientId = "poet";
+              options.ClientSecret = "88C1A7E1-8H79-4A89-A3D6-A88888FB86B0";
+              options.ResponseType = "code";
+              options.GetClaimsFromUserInfoEndpoint = true;
+
+              options.ClaimActions.MapJsonKey("location", "location");
+
+              options.SaveTokens = true;
+
+              options.Scope.Add("api1");
+              // adding additional scope
+              options.Scope.Add("api2.full_access");
+              options.Scope.Add("location");
+              // options.Scope.Add("custom.profile.test");
+              options.Scope.Add("offline_access");
+          });
+      services.AddAuthorization();
 
       services.AddDbContext<SchoolContext>(options =>
         options.UseSqlite(Configuration.GetConnectionString("SchoolContext")));

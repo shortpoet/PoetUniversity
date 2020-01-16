@@ -189,6 +189,7 @@ public static class Config
       {
         ClientId = "poet",
         ClientName = "Poet Client",
+        ClientSecrets = { new Secret("88C1A7E1-8H79-4A89-A3D6-A88888FB86B0".Sha256()) },
 
         AllowedGrantTypes = GrantTypes.Code,
         RequirePkce = true,
@@ -196,9 +197,9 @@ public static class Config
         AllowAccessTokensViaBrowser = true,
 
 
-        RedirectUris =           { "https://localhost:8080/callback" },
-        PostLogoutRedirectUris = { "https://localhost:8080/" },
-        AllowedCorsOrigins =     { "https://localhost:8080" },
+        RedirectUris =           { "http://localhost:8080/callback" },
+        PostLogoutRedirectUris = { "http://localhost:8080/" },
+        AllowedCorsOrigins =     { "http://localhost:8080" },
 
         // enables support for refresh tokens
         AllowOfflineAccess = true,

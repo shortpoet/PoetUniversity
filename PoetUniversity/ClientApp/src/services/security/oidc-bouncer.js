@@ -2,11 +2,11 @@ import Oidc from 'oidc-client'
 
 var mgr = new Oidc.UserManager({
   authority: 'https://localhost:5003',
-  client_id: 'js',
-  redirect_uri: 'https://localhost:5004/callback',
+  client_id: 'poet',
+  redirect_uri: 'https://localhost:8080/callback',
   response_type: 'code',
   scope: 'openid profile api1',
-  post_logout_redirect_uri: 'https://localhost:5004/',
+  post_logout_redirect_uri: 'https://localhost:8080/',
   userStore: new Oidc.WebStorageStateStore({ store: window.localStorage })
 })
 
