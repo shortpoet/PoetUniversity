@@ -114,7 +114,8 @@ namespace IdentityServer
               options.AddPolicy("default", policy =>
               {
                 // policy.WithOrigins("https://localhost:5004;https://localhost:5001;https://localhost:5003")
-                policy.WithOrigins("https://localhost:5004")
+                // policy.WithOrigins("https://localhost:5004; http://localhost:8080")
+                policy.AllowAnyOrigin()
                   .AllowAnyHeader()
                   .AllowAnyMethod();
               });

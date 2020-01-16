@@ -183,6 +183,34 @@ public static class Config
           "api1",
           "api2.full_access"
         }
+      },
+      // Poet Client
+      new Client
+      {
+        ClientId = "poet",
+        ClientName = "Poet Client",
+
+        AllowedGrantTypes = GrantTypes.Code,
+        RequirePkce = true,
+        RequireClientSecret = false,
+        AllowAccessTokensViaBrowser = true,
+
+
+        RedirectUris =           { "https://localhost:8080/callback" },
+        PostLogoutRedirectUris = { "https://localhost:8080/" },
+        AllowedCorsOrigins =     { "https://localhost:8080" },
+
+        // enables support for refresh tokens
+        AllowOfflineAccess = true,
+
+        AllowedScopes = new List<string>
+        {
+          IdentityServerConstants.StandardScopes.OpenId,
+          IdentityServerConstants.StandardScopes.Profile,
+          "location",
+          "api1",
+          "api2.full_access"
+        }
       }
     };
   }
