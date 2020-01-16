@@ -2,7 +2,11 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import VueCookies from 'vue-cookies'
 
+import StoreModules from '@/store/modules/StoreModules'
 import StoreParts from '@/store/modules/StoreParts'
+import StoreRoles from '@/store/modules/StoreRoles'
+import StoreSchedule from '@/store/modules/StoreSchedule'
+import StoreTable from '@/store/modules/StoreTable'
 
 import {
   CHANGE_COOKIE,
@@ -27,7 +31,11 @@ export const rootGetters = {
 
 export default new Vuex.Store({
   modules: {
-    parts: StoreParts
+    modules: StoreModules,
+    parts: StoreParts,
+    roles: StoreRoles,
+    schedule: StoreSchedule,
+    tables: StoreTable
   },
   state: {
     environment: process.env.NODE_ENV === 'development' ? 'development' : 'production',
