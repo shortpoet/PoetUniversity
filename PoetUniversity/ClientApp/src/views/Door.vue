@@ -1,5 +1,5 @@
 <template>
-  <b-container class="about">
+  <b-container class="door">
     <b-row>
       <b-col>
       <b-button @click='callApi'>Call Weather API</b-button>
