@@ -71,7 +71,7 @@ export default {
         } else if (typeof msg !== 'string') {
           msg = JSON.stringify(msg, null, 2)
         }
-        document.getElementById('results').innerHTML += msg + '\r\n'
+        document.getElementById('results').innerHTML += msg + '\\r\\n'
       })
     },
     authenticate () {
@@ -124,6 +124,7 @@ export default {
       }
       var response = await axios.get(url, headers)
       comp.log(response)
+      comp.writeDOM(JSON.stringify(response.data))
     }
   },
   created: function () {

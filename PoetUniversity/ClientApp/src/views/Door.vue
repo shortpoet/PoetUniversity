@@ -30,6 +30,18 @@
     <b-row>
       <b-col>
         <div
+          id="identity"
+          v-if="identityLoaded"
+        >
+          <TableComp
+            :items="identity"
+          />
+        </div>
+      </b-col>
+    </b-row>
+    <b-row>
+      <b-col>
+        <div
           id="results"
         >
         </div>
@@ -68,7 +80,8 @@ export default {
     return {
       weather: ['no data yet'],
       weatherLoaded: false,
-      items: []
+      identity: [],
+      identityLoaded: false
     }
   },
   methods: {
@@ -84,12 +97,15 @@ export default {
       })
     },
     api1: function () {
+      var comp = this
       mgr.getUser().then(function (user) {
         var url = endpoints.index.BACKEND_PREFIX_DEV + endpoints.auth.IDENTITY_API
         var xhr = new XMLHttpRequest()
         xhr.open('GET', url)
         xhr.onload = function () {
-          this.log(xhr.status, JSON.parse(xhr.responseText))
+          comp.log(xhr.status, JSON.parse(xhr.responseText))
+          comp.identity = JSON.parse(xhr.responseText)
+          comp.identityLoaded = true
         }
         xhr.setRequestHeader('Authorization', 'Bearer ' + user.access_token)
         xhr.send()
