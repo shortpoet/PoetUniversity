@@ -3,16 +3,17 @@ import VueRouter from 'vue-router'
 import Home from '@/views/Home.vue'
 import store from '@/store/index'
 import Callback from '@/components/Auth/Callback'
+import Unauthorized from '@/components/Auth/Unauthorized'
 Vue.use(VueRouter)
 
-const auth = store.getters['auth/getAuthState']
+const isAuthenticated = store.getters['auth/getAuthState']
 
 const routes = [
   {
     path: '/',
     name: 'home',
-    component: Home,
-    redirect: '/door'
+    component: Home
+    // redirect: '/door'
   },
   {
     path: '/door',
@@ -26,10 +27,13 @@ const routes = [
     component: () => import(/* webpackChunkName: "door" */ '../views/Door.vue'),
     beforeEnter: (to, from, next) => {
       console.log('#### before DOOR enter ####')
-      if (auth.isAuthenticated) {
+      console.log(isAuthenticated)
+      if (isAuthenticated) {
         // already signed in, we can navigate anywhere
         next()
       } else if (to.matched.some(record => record.meta.requiresAuth)) {
+        console.log(to)
+        // debugger
         // authentication is required. Trigger the sign in process, including the return URI
         store.dispatch('auth/authenticate', to.path).then(() => {
           console.log('authenticating a protected url:' + to.path)
@@ -40,6 +44,11 @@ const routes = [
         next()
       }
     }
+  },
+  {
+    path: '/unauthorized',
+    name: 'Unauthorized',
+    component: Unauthorized
   },
   {
     path: '/callback',

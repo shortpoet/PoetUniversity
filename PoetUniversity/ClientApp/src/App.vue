@@ -7,6 +7,35 @@
     <router-view/>
   </div>
 </template>
+<script>
+// import mgr from '@/services/security/oidc-bouncer.js'
+
+export default {
+  name: 'App',
+  props: {
+  },
+  components: {
+  },
+  data () {
+    return {
+    }
+  },
+  methods: {
+    log: function (input) {
+      if (input !== undefined) {
+        console.log(input)
+      } else {
+        console.log(this)
+      }
+    }
+  },
+  mounted: function () {
+    // this.log()
+    // this.log(mgr)
+    // this.log(mgr.getUser())
+  }
+}
+</script>
 
 <style>
 #app {

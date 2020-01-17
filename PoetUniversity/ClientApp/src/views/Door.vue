@@ -7,6 +7,14 @@
       <b-button @click='api2'>Weather Api</b-button>
       </b-col>
     </b-row>
+    <hr />
+    <b-row>
+      <b-col>
+      <b-button :disabled="false" @click='login'>Login</b-button>
+      <b-button :disabled="false" @click='logout'>Logout</b-button>
+      <b-button :disabled="true" @click='api2'>Future</b-button>
+      </b-col>
+    </b-row>
     <b-row>
       <b-col>
         <div
@@ -39,11 +47,11 @@ import TableComp from '@/components/TableComp'
 
 var config = {
   authority: 'https://localhost:5003',
-  client_id: 'js',
-  redirect_uri: 'https://localhost:8080/callback.html',
+  client_id: 'poet',
+  redirect_uri: 'http://localhost:8080/callback',
   response_type: 'code',
   scope: 'openid profile api1',
-  post_logout_redirect_uri: 'https://localhost:8080/index.html'
+  post_logout_redirect_uri: 'http://localhost:8080/'
 }
 
 var mgr = new Oidc.UserManager(config)
@@ -108,6 +116,12 @@ export default {
       } catch (err) {
         this.weather.push('Ooops!' + err)
       }
+    },
+    login () {
+      this.$store.dispatch('auth/login')
+    },
+    logout () {
+      this.$store.dispatch('auth/logout')
     }
   }
 }

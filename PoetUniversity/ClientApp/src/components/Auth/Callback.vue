@@ -24,10 +24,13 @@ export default {
   },
   methods: {
     async redirect () {
+      // debugger
       try {
         var result = await mgr.signinRedirectCallback()
         var returnToUrl = '/'
         if (result.state !== undefined) {
+          console.log(result)
+          // debugger
           returnToUrl = result.state
         }
         this.$router.push({ path: returnToUrl })
@@ -35,6 +38,11 @@ export default {
         this.$router.push({ name: 'Unauthorized' })
       }
     }
+  },
+  created: function () {
+    console.log(this)
+    // debugger
+    // this.redirect()
   }
 }
 </script>

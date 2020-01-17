@@ -33,24 +33,85 @@ export const mutations = {
 }
 
 export const actions = {
-  async authenticate ({ commit, state, rootGetters, dispatch }, returnPath) {
+  authenticate ({ commit, state, rootGetters, dispatch }, payload) {
+    console.log('start authenticate')
+    try {
+      mgr.getUser().then(function (user) {
+        if (user) {
+          // commit(SET_AUTH_STATE, true)
+          // commit(SET_USER, user)
+          console.log('User logged in', user.profile)
+        } else {
+          console.log('User not logged in')
+        }
+      })
+    } catch (err) {
+      console.log(err)
+    }
+  },
+  login ({ commit, state, rootGetters, dispatch }, payload) {
+    mgr.signinRedirect()
+    // commit(SET_AUTH_STATE, true)
+    // commit(SET_USER, user)
+  },
+  logout ({ commit, state, rootGetters, dispatch }, payload) {
+    mgr.signoutRedirect()
+    // commit(SET_AUTH_STATE, true)
+    // commit(SET_USER, user)
+  },
+  async authenticateRB ({ commit, state, rootGetters, dispatch }, returnPath) {
+    console.log('start authenticate')
+    console.log(returnPath)
+    // debugger
     const user = await dispatch('getUser')
     if (user) {
+      // debugger
       commit(SET_AUTH_STATE, true)
       commit(SET_USER, user)
     } else {
+      // debugger
+      console.log('else signin')
+      console.log(returnPath)
       await dispatch('signIn', returnPath)
     }
   },
-  async getUser  ({ commit, state, rootGetters }, payload) {
+  getUser ({ commit, state, rootGetters }, payload) {
     try {
+      mgr.getUser().then(function (user) {
+        if (user) {
+          commit(SET_AUTH_STATE, true)
+          commit(SET_USER, user)
+          console.log('User logged in', user.profile)
+        } else {
+          console.log('User not logged in')
+        }
+      })
+    } catch (err) {
+      console.log(err)
+    }
+  },
+  async getUserRB  ({ commit, state, rootGetters }, payload) {
+    try {
+      // debugger
       let user = await mgr.getUser()
       return user
     } catch (err) {
       console.log(err)
     }
   },
-  signIn (returnPath) {
+  signIn ({ commit, state, rootGetters, dispatch }, returnPath) {
+    console.log(returnPath)
+    console.log(mgr)
+    // mgr.signinRedirect()
+    // debugger
+    returnPath ? mgr.signinRedirect({ state: returnPath })
+      : mgr.signinRedirect()
+  },
+  signInRB ({ commit, state, rootGetters, dispatch }, returnPath) {
+    console.log(returnPath)
+    console.log(mgr)
+    // mgr.signinRedirect()
+    // debugger
     returnPath ? mgr.signinRedirect({ state: returnPath })
       : mgr.signinRedirect()
   }

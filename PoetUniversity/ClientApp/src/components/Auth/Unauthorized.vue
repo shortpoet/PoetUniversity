@@ -2,10 +2,7 @@
     <b-row>
       <b-col>
         <div>
-          <div class="home">
-            <img alt="Vue logo" src="../assets/logo.png">
-            <JavaScriptClient msg="Welcome to Your Javascript Client"/>
-          </div>
+          <p>You do not have permissions or your sign in failed</p>
         </div>
       </b-col>
     </b-row>
@@ -14,13 +11,9 @@
 <script>
 // import { mapGetters } from 'vuex'
 // import mgr from '@/services/security/oidc-bouncer.js'
-import JavaScriptClient from '@/components/JavaScriptClient'
 
 export default {
-  name: 'Home',
-  components: {
-    JavaScriptClient
-  },
+  name: 'Unauthorized',
   props: {
   },
   data () {
