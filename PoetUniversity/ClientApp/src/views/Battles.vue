@@ -4,7 +4,7 @@
       <b-col>
         <div>
           <h5>
-            This is an extension of the code found in Richard Bank's fine <b-link target="_blank" :href="docsUrl">Blog Post Series</b-link> on securing a vue app with IdentityServer.
+            This is an extension of the code found in DZone's fine <b-link target="_blank" :href="dzoneUrl">Blog Post Series</b-link> on securing a vue app with IdentityServer.
           </h5>
         </div>
       </b-col>
@@ -30,6 +30,7 @@ export default {
   },
   data () {
     return {
+      dzoneUrl: 'https://dzone.com/articles/vuejs-2-authentication-tutorial-part-3'
     }
   },
   computed: {

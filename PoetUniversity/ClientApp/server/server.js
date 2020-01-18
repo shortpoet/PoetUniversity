@@ -7,20 +7,48 @@ const jwks = require('jwks-rsa');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 
+// these added for https
+const http = require('http');
+const https = require('https');
+const fs = require('fs');
+
+const credentials = {
+  key: fs.readFileSync('key.pem'),
+  cert: fs.readFileSync('cert.pem')
+};
+
+// https://stackoverflow.com/questions/8355473/listen-on-http-and-https-for-a-single-express-app
+// https://stackoverflow.com/questions/11744975/enabling-https-on-express-js
+// https://stackoverflow.com/questions/17696801/express-js-app-listen-vs-server-listen
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
+var httpServer = http.createServer(app);
+var httpsServer = https.createServer(credentials, app)
 
-const authCheck = jwt({
+const authCheckAuth0 = jwt({ 
   secret: jwks.expressJwtSecret({
         cache: true,
         rateLimit: true,
         jwksRequestsPerMinute: 5,
-        jwksUri: "https://{YOUR-AUTH0-DOMAIN}/.well-known/jwks.json"
+        jwksUri: "https://shortpoet.auth0.com/.well-known/jwks.json"
     }),
     // This is the identifier we set when we created the API
-    audience: '{YOUR-API-AUDIENCE-ATTRIBUTE}',
-    issuer: "https://{YOUR-AUTH0-DOMAIN}.auth0.com/",
+    audience: 'battles-api',
+    issuer: "https://shortpoet.auth0.com/",
+    algorithms: ['RS256']
+});
+const authCheckIdentity = jwt({ 
+  secret: jwks.expressJwtSecret({
+        cache: true,
+        rateLimit: true,
+        jwksRequestsPerMinute: 5,
+        jwksUri: "https://localhost:5003/.well-known/jwks.json"
+    }),
+    // This is the identifier we set when we created the API
+    audience: 'battles-api',
+    issuer: "https://localhost:5003/",
     algorithms: ['RS256']
 });
 
@@ -85,7 +113,7 @@ app.get('/api/battles/public', (req, res) => {
   res.json(publicBattles);
 })
 
-app.get('/api/battles/private', authCheck, (req,res) => {
+app.get('/api/battles/private', authCheckAuth0, (req,res) => {
   let privateBattles = [
   {
     id: 2111,
@@ -145,5 +173,6 @@ app.get('/api/battles/private', authCheck, (req,res) => {
   res.json(privateBattles);
 })
 
-app.listen(3333);
+httpServer.listen(3030);
+httpsServer.listen(3333);
 console.log('Listening on localhost:3333');

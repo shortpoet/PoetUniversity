@@ -5,11 +5,11 @@ import auth0 from 'auth0-js'
 const ID_TOKEN_KEY = 'id_token'
 const ACCESS_TOKEN_KEY = 'access_token'
 
-const CLIENT_ID = '{AUTH0_CLIENT_ID}'
-const CLIENT_DOMAIN = '{AUTH0_DOMAIN}'
-const REDIRECT = 'YOUR_CALLBACK_URL'
-const SCOPE = '{SCOPE}'
-const AUDIENCE = 'AUDIENCE_ATTRIBUTE'
+const CLIENT_ID = 'BaXDXqmp6XX6U9UuHSC5dmrnJt6gSlJh'
+const CLIENT_DOMAIN = 'shortpoet.auth0.com/'
+const REDIRECT = 'https://localhost:8080/battles/battles-callback'
+const SCOPE = 'openid profile email'
+const AUDIENCE = 'battles-api'
 
 var auth = new auth0.WebAuth({
   clientID: CLIENT_ID,
@@ -32,13 +32,13 @@ var router = new Router({
 export function logout () {
   clearIdToken()
   clearAccessToken()
-  router.go('/')
+  router.go('/battles')
 }
 
 export function requireAuth (to, from, next) {
   if (!isLoggedIn()) {
     next({
-      path: '/',
+      path: '/battles',
       query: { redirect: to.fullPath }
     })
   } else {

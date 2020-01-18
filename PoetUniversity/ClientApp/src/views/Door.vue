@@ -99,7 +99,8 @@ export default {
       identity: [],
       identityLoaded: false,
       services: [],
-      servicesLoaded: false
+      servicesLoaded: false,
+      docsUrl: 'https://www.richard-banks.org/2018/11/securing-vue-with-identityserver-part1.html'
     }
   },
   computed: {
