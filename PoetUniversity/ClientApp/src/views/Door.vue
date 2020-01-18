@@ -2,9 +2,19 @@
   <b-container class="door">
     <b-row>
       <b-col>
-      <b-button @click='callApi'>Call Weather API</b-button>
-      <b-button @click='api1'>Identity Api</b-button>
-      <b-button @click='api2'>Weather Api</b-button>
+        <div>
+          <h5>
+            This is an extension of the code found in Richard Bank's fine <b-link target="_blank" :href="docsUrl">Blog Post Series</b-link> on securing a vue app with IdentityServer.
+          </h5>
+        </div>
+      </b-col>
+    </b-row>
+    <hr />
+    <b-row>
+      <b-col>
+      <b-button @click='servicesApi'>Services Api</b-button>
+      <b-button @click='identityApi'>Identity Api</b-button>
+      <b-button @click='weatherApi'>Weather Api</b-button>
       </b-col>
     </b-row>
     <hr />
@@ -12,7 +22,7 @@
       <b-col>
       <b-button :disabled="false" @click='login'>Login</b-button>
       <b-button :disabled="false" @click='logout'>Logout</b-button>
-      <b-button :disabled="true" @click='api2'>Future</b-button>
+      <b-button :disabled="true">Future</b-button>
       </b-col>
     </b-row>
     <b-row>
@@ -42,6 +52,24 @@
     <b-row>
       <b-col>
         <div
+          id="services"
+          v-if="servicesLoaded"
+        >
+          <TableComp
+            :items="services"
+          />
+          <div v-for="(service,index) in services" :key="index">
+            <p>
+              <img :src="service.iconUri" />
+              <a :href="service.uri">{{ service.name }}</a>
+            </p>
+          </div>
+        </div>
+      </b-col>
+    </b-row>
+    <b-row>
+      <b-col>
+        <div
           id="results"
         >
         </div>
@@ -52,21 +80,9 @@
 
 <script>
 import axios from 'axios'
-import Oidc from 'oidc-client'
-// import { mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
 import endpoints from '@/store/api-endpoints'
 import TableComp from '@/components/TableComp'
-
-var config = {
-  authority: 'https://localhost:5003',
-  client_id: 'poet',
-  redirect_uri: 'http://localhost:8080/callback',
-  response_type: 'code',
-  scope: 'openid profile api1',
-  post_logout_redirect_uri: 'http://localhost:8080/'
-}
-
-var mgr = new Oidc.UserManager(config)
 
 export default {
   name: 'HelloWorld',
@@ -81,39 +97,43 @@ export default {
       weather: ['no data yet'],
       weatherLoaded: false,
       identity: [],
-      identityLoaded: false
+      identityLoaded: false,
+      services: [],
+      servicesLoaded: false
     }
   },
+  computed: {
+    ...mapGetters('auth', ['getUser']),
+    weatherUrl () { return endpoints.index.BACKEND_PREFIX_DEV + endpoints.auth.WEATHER_API },
+    identityUrl () { return endpoints.index.BACKEND_PREFIX_DEV + endpoints.auth.IDENTITY_API },
+    servicesUrl () { return endpoints.index.BACKEND_PREFIX_DEV + endpoints.auth.SERVICES_API },
+    headers () {
+      return {
+        'headers': {
+          'Authorization': 'Bearer ' + this.getUser.access_token
+        }
+      }
+    }
+    // showWeather () {},
+    // show () {},
+    // showWeather () {},
+  },
   methods: {
-    log () {
-      document.getElementById('results').innerText = ''
-      Array.prototype.forEach.call(arguments, function (msg) {
-        if (msg instanceof Error) {
-          msg = 'Error: ' + msg.message
-        } else if (typeof msg !== 'string') {
-          msg = JSON.stringify(msg, null, 2)
-        }
-        document.getElementById('results').innerHTML += msg + '\r\n'
-      })
+    async weatherApi () {
+      try {
+        const response = await axios.get(this.weatherUrl, this.headers)
+        console.log(response)
+        this.weather = response.data
+        this.weatherLoaded = true
+        console.log('weather')
+        console.log(this.weather)
+        this.weatherApi2()
+      } catch (err) {
+        this.weather.push('Ooops!' + err)
+      }
     },
-    api1: function () {
-      var comp = this
-      mgr.getUser().then(function (user) {
-        var url = endpoints.index.BACKEND_PREFIX_DEV + endpoints.auth.IDENTITY_API
-        var xhr = new XMLHttpRequest()
-        xhr.open('GET', url)
-        xhr.onload = function () {
-          comp.log(xhr.status, JSON.parse(xhr.responseText))
-          comp.identity = JSON.parse(xhr.responseText)
-          comp.identityLoaded = true
-        }
-        xhr.setRequestHeader('Authorization', 'Bearer ' + user.access_token)
-        xhr.send()
-      })
-    },
-    api2: function () {
-      var url = endpoints.index.BACKEND_PREFIX_DEV + endpoints.auth.WEATHER_API
-      fetch(url)
+    weatherApi2: function () {
+      fetch(this.weatherUrl)
         .then(response => response.text()
           // .json(), etc.
           // same as function(response) {return response.text();}
@@ -121,16 +141,28 @@ export default {
           html => console.log(html)
         )
     },
-    async callApi () {
+    async identityApi () {
       try {
-        const response = await axios.get(endpoints.index.BACKEND_PREFIX_DEV + endpoints.auth.WEATHER_API)
+        const response = await axios.get(this.identityUrl, this.headers)
         console.log(response)
-        this.weather = response.data
-        this.weatherLoaded = true
-        console.log('weather')
-        console.log(this.weather)
+        this.identity = response.data
+        this.identityLoaded = true
+        console.log('identity')
+        console.log(this.identity)
       } catch (err) {
-        this.weather.push('Ooops!' + err)
+        this.identity.push('Ooops!' + err)
+      }
+    },
+    async servicesApi () {
+      try {
+        const response = await axios.get(this.servicesUrl, this.headers)
+        console.log(response)
+        this.services = response.data
+        this.servicesLoaded = true
+        console.log('services')
+        console.log(this.services)
+      } catch (err) {
+        this.services.push('Ooops!' + err)
       }
     },
     login () {
@@ -142,3 +174,20 @@ export default {
   }
 }
 </script>
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+h3 {
+  margin: 40px 0 0;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+a {
+  color: #42b983;
+}
+</style>

@@ -5,4 +5,4 @@ export const ERASE_COOKIE = 'ERASE_COOKIE'
 
 // PARTS @/store/modules/StoreParts.js
 export const SET_AUTH_STATE = 'SET_AUTH_STATE'
-export const SET_USET = 'SET_USET'
+export const SET_USER = 'SET_USET'

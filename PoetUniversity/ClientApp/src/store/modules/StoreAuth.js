@@ -33,7 +33,7 @@ export const mutations = {
 }
 
 export const actions = {
-  authenticate ({ commit, state, rootGetters, dispatch }, payload) {
+  authenticate1 ({ commit, state, rootGetters, dispatch }, payload) {
     console.log('start authenticate')
     try {
       mgr.getUser().then(function (user) {
@@ -59,28 +59,33 @@ export const actions = {
     // commit(SET_AUTH_STATE, true)
     // commit(SET_USER, user)
   },
-  async authenticateRB ({ commit, state, rootGetters, dispatch }, returnPath) {
+  async authenticate ({ commit, state, rootGetters, dispatch }, returnPath) {
     console.log('start authenticate')
     console.log(returnPath)
     // debugger
-    const user = await dispatch('getUser')
-    if (user) {
-      // debugger
-      commit(SET_AUTH_STATE, true)
-      commit(SET_USER, user)
-    } else {
-      // debugger
-      console.log('else signin')
-      console.log(returnPath)
-      await dispatch('signIn', returnPath)
+    try {
+      const user = await dispatch('getUserRB')
+      if (user) {
+        // debugger
+        commit(SET_AUTH_STATE, true)
+        commit(SET_USER, user)
+      } else {
+        // debugger
+        console.log('else signin')
+        console.log(returnPath)
+        await dispatch('signInRB', returnPath)
+      }
+    } catch (err) {
+      console.log(err)
     }
   },
-  getUser ({ commit, state, rootGetters }, payload) {
+  getUser ({ commit, state, rootGetters }) {
     try {
       mgr.getUser().then(function (user) {
+        // debugger
         if (user) {
-          commit(SET_AUTH_STATE, true)
-          commit(SET_USER, user)
+          // commit(SET_AUTH_STATE, true)
+          // commit(SET_USER, user)
           console.log('User logged in', user.profile)
         } else {
           console.log('User not logged in')

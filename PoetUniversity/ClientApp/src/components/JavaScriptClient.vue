@@ -12,6 +12,16 @@
     <hr />
     <b-row>
       <b-col>
+        <div>
+          <h5>
+            This is an extension of the code found in the <b-link target="_blank" :href="docsUrl">IdentityServer 4 docs</b-link> and <b-link target="_blank"  :href="repoUrl">quickstarts 4 repo</b-link>.
+          </h5>
+        </div>
+      </b-col>
+    </b-row>
+    <hr />
+    <b-row>
+      <b-col>
         <b-button :disabled="false" @click='login'>Login</b-button>
         <b-button :disabled="false" @click='logout'>Logout</b-button>
         <b-button :disabled="false" @click='callApi'>Api</b-button>
@@ -47,7 +57,9 @@ export default {
         response_type: 'code',
         scope: 'openid profile api1',
         post_logout_redirect_uri: 'http://localhost:8080/'
-      }
+      },
+      repoUrl: 'https://github.com/IdentityServer/IdentityServer4/tree/master/samples/Quickstarts/4_JavaScriptClient',
+      docsUrl: 'http://docs.identityserver.io/en/latest/quickstarts/4_javascript_client.html'
     }
   },
   computed: {
@@ -71,7 +83,11 @@ export default {
         } else if (typeof msg !== 'string') {
           msg = JSON.stringify(msg, null, 2)
         }
-        document.getElementById('results').innerHTML += msg + '\\r\\n'
+        var lines = msg.split(',')
+        lines.forEach(l => {
+          document.getElementById('results').innerHTML += l + '<br />'
+        })
+        // document.getElementById('results').innerHTML += msg + '<br />' + 'Test'
       })
     },
     authenticate () {
