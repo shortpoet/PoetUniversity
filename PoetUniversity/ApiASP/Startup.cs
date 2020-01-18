@@ -34,22 +34,28 @@ namespace PoetUniversity
     {
       services.AddRazorPages();
 
+      // services.AddMvc(options => {
+      //   options.EnableEndpointRouting = false;
+      // });
       services.AddControllersWithViews();
 
       // added to enable identity controller token check
-      // services.AddAuthentication("Bearer")
-      //   .AddJwtBearer("Bearer", options =>
-      //   {
-      //       options.Authority = "https://localhost:5003";
-      //       options.RequireHttpsMetadata = false;
+      services.AddAuthentication("Bearer")
+        .AddJwtBearer("Bearer", options =>
+        {
+            options.Authority = "https://localhost:5003";
+            options.RequireHttpsMetadata = false;
 
-      //       options.Audience = "api1";
-      //   });
+            options.Audience = "api1";
+        });
 
         services.AddAuthentication(options =>
           {
-              options.DefaultScheme = "Cookies";
-              options.DefaultChallengeScheme = "oidc";
+              // these two lines make it so client can't call api
+              // wondering what changed when i disabled them
+              // i think the authentication scheme goes from oidc to jwt bearer token
+              // options.DefaultScheme = "Cookies";
+              // options.DefaultChallengeScheme = "oidc";
           })
           .AddCookie("Cookies")
           .AddOpenIdConnect("oidc", options =>
@@ -79,10 +85,10 @@ namespace PoetUniversity
         options.UseSqlite(Configuration.GetConnectionString("SchoolContext")));
       // services.AddDbContext<SchoolContext>(options =>
       //   options.UseSqlServer(Configuration.GetConnectionString("SchoolContext")));
-      services.AddSpaStaticFiles(configuration =>
-      {
-          configuration.RootPath = "../ClientApp";
-      });
+      // services.AddSpaStaticFiles(configuration =>
+      // {
+      //     configuration.RootPath = "../ClientApp";
+      // });
       services.AddCors(options =>
       {
         // this defines a CORS policy called "default"
@@ -113,7 +119,7 @@ namespace PoetUniversity
         app.UseHsts();
       }
 
-      app.UseHttpsRedirection();
+      // app.UseHttpsRedirection();
       app.UseStaticFiles();
 
       app.UseRouting();
@@ -132,16 +138,21 @@ namespace PoetUniversity
 
       });
 
-      app.UseSpa(spa =>
-      {
-        spa.Options.SourcePath = "../ClientApp";
+      // app.UseSpa(spa =>
+      // {
+      //   spa.Options.SourcePath = "../ClientApp";
 
-        if (env.IsDevelopment())
-        {
-          spa.UseVueCli(npmScript: "serve", port: 8080);
-        }
-      });
-
+      //   if (env.IsDevelopment())
+      //   {
+      //     spa.UseVueCli(npmScript: "serve", port: 8080);
+      //   }
+      // });
+      // app.UseMvc(routes =>
+      // {
+      //   routes.MapSpaFallbackRoute(
+      //     name: "spa-fallback",
+      //     defaults: new { controller = "CatchAll", action = "Index" });
+      // });
     }
   }
 }

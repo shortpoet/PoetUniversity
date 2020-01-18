@@ -94,6 +94,14 @@ dotnet aspnet-codegenerator razorpage -m Address -dc PoetUniversity.Data.SchoolC
       options.ClaimActions.MapJsonKey("location", "location");
       ```
 
+- Add JavaScriptClient
+
+- Add Richard Banks
+
+- Add node server oauth
+  - run npm install in server folder
+  - add 
+
 ## Useful Links:
 
 - [IdentityServer4 IdentityModel helper library for claims-based identity OAuth2.0 and OpenID Connect](https://github.com/IdentityModel/IdentityModel.AspNetCore)

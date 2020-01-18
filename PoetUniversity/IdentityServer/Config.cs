@@ -197,9 +197,10 @@ public static class Config
         AllowAccessTokensViaBrowser = true,
 
 
-        RedirectUris =           { "http://localhost:8080/callback" },
-        PostLogoutRedirectUris = { "http://localhost:8080/" },
-        AllowedCorsOrigins =     { "http://localhost:8080" },
+        RedirectUris =           { "https://localhost:8080/callback.html", "https://localhost:8080/callback" },
+        // RedirectUris =           { "https://localhost:8080/callback.html" },
+        PostLogoutRedirectUris = { "https://localhost:8080/" },
+        AllowedCorsOrigins =     { "https://localhost:8080" },
 
         // enables support for refresh tokens
         AllowOfflineAccess = true,

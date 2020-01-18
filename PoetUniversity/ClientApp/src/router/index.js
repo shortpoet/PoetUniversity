@@ -1,9 +1,14 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '@/views/Home.vue'
+import Battles from '@/views/Battles.vue'
 import store from '@/store/index'
 import Callback from '@/components/Auth/Callback'
 import Unauthorized from '@/components/Auth/Unauthorized'
+// import PrivateBattles from '@/components/Battles/PrivateBattles'
+import PublicBattles from '@/components/Battles/PublicBattles'
+
+import { requireAuth } from '@/utils/auth'
 Vue.use(VueRouter)
 
 const isAuthenticated = store.getters['auth/getAuthState']
@@ -54,8 +59,26 @@ const routes = [
     path: '/callback',
     name: 'callback',
     component: Callback
-  }
-]
+  },
+  {
+    path: '/battles/',
+    name: 'battles',
+    // redirect: '/PartSearch',
+    component: Battles,
+    // component: () => import(/* webpackChunkName: "battles" */ '@/views/Battles.vue'),
+    children: [
+      {
+        path: '/battles/private-battles',
+        // component: () => import(/* webpackChunkName: "PrivateBattles" */ '@/components/Battles/PrivateBattles.vue'),
+        component: PublicBattles,
+        beforeEnter: requireAuth
+      },
+      {
+        path: '/battles/battles-callback',
+        component: () => import(/* webpackChunkName: "battlesCallback" */ '@/components/Battles/BattlesCallback.vue')
+      }
+    ]
+  }]
 
 const router = new VueRouter({
   routes
