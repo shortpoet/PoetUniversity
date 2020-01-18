@@ -85,7 +85,7 @@ import endpoints from '@/store/api-endpoints'
 import TableComp from '@/components/TableComp'
 
 export default {
-  name: 'Door',
+  name: 'HelloWorld',
   props: {
     msg: String
   },
