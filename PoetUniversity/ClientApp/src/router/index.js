@@ -14,6 +14,26 @@ Vue.use(VueRouter)
 
 const isAuthenticated = store.getters['auth/getAuthState']
 
+const checkAuth = function (to, from, next) {
+  console.log('#### before DOOR enter ####')
+  console.log(isAuthenticated)
+  if (isAuthenticated) {
+    // already signed in, we can navigate anywhere
+    next()
+  } else if (to.matched.some(record => record.meta.requiresAuth)) {
+    console.log(to)
+    // debugger
+    // authentication is required. Trigger the sign in process, including the return URI
+    store.dispatch('auth/authenticate', to.path).then(() => {
+      console.log('authenticating a protected url:' + to.path)
+      next()
+    })
+  } else {
+    // No auth required. We can navigate
+    next()
+  }
+}
+
 const routes = [
   {
     path: '/',
@@ -27,29 +47,11 @@ const routes = [
     meta: {
       requiresAuth: true
     },
+    beforeEnter: checkAuth,
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "door" */ '../views/Door.vue'),
-    beforeEnter: (to, from, next) => {
-      console.log('#### before DOOR enter ####')
-      console.log(isAuthenticated)
-      if (isAuthenticated) {
-        // already signed in, we can navigate anywhere
-        next()
-      } else if (to.matched.some(record => record.meta.requiresAuth)) {
-        console.log(to)
-        // debugger
-        // authentication is required. Trigger the sign in process, including the return URI
-        store.dispatch('auth/authenticate', to.path).then(() => {
-          console.log('authenticating a protected url:' + to.path)
-          next()
-        })
-      } else {
-        // No auth required. We can navigate
-        next()
-      }
-    }
+    component: () => import(/* webpackChunkName: "door" */ '../views/Door.vue')
   },
   {
     path: '/unauthorized',

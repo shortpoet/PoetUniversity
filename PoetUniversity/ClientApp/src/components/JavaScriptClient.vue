@@ -144,12 +144,12 @@ export default {
     }
   },
   created: function () {
-    console.log(this)
+    // console.log(this)
     this.authenticate()
   },
   mounted: function () {
-    this.log()
-    this.log(this.mgr)
+    // this.log()
+    // this.log(this.mgr)
     this.log(this.mgr.getUser())
   }
 

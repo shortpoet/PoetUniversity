@@ -82,14 +82,14 @@ export default {
   methods: {
     async publicApi () {
       try {
-        console.log('hitting public battles api')
-        console.log(this.publicUrl)
+        // console.log('hitting public battles api')
+        // console.log(this.publicUrl)
         const response = await axios.get(this.publicUrl)
         console.log(response)
-        console.log(this.publicUrl)
+        // console.log(this.publicUrl)
         this.publicBattles = response.data
         this.publicLoaded = true
-        console.log('weather')
+        console.log('public battles')
         console.log(this.publicBattles)
       } catch (err) {
         this.publicBattles.push('Ooops!' + err)

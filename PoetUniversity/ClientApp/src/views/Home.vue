@@ -32,7 +32,7 @@ export default {
   methods: {
   },
   created: function () {
-    console.log(this)
+    // console.log(this)
   }
 }
 </script>

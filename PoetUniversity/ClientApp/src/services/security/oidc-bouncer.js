@@ -14,7 +14,6 @@ var mgr = new Oidc.UserManager({
 // disable loggin in production
 Oidc.Log.logger = console
 Oidc.Log.level = Oidc.Log.INFO
-
 console.log(mgr)
 
 export default mgr

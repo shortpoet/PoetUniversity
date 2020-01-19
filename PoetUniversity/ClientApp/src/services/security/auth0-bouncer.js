@@ -2,7 +2,7 @@ import Oidc from 'oidc-client'
 
 const CLIENT_ID = 'BaXDXqmp6XX6U9UuHSC5dmrnJt6gSlJh'
 const CLIENT_DOMAIN = 'shortpoet.auth0.com/'
-const REDIRECT = 'https://localhost:8080/battles/battles-callback'
+const REDIRECT = 'https://localhost:8080/callback.html'
 // const SCOPE = 'openid profile email battles-api'
 const AUDIENCE = 'https://localhost:3333'
 
