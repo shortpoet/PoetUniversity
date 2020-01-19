@@ -18,7 +18,7 @@
       </div>
     </div>
     <div class="col-sm-12">
-      <div class="jumbotron text-center" v-if="isLoggedIn()">
+      <div class="jumbotron text-center" v-if="hasAuth">
         <h2>View Private Startup Battles</h2>
         <router-link class="btn btn-lg btn-success" to="/private-battles">Private Startup Battles</router-link>
       </div>
@@ -43,8 +43,12 @@ export default {
       publicBattles: ''
     }
   },
+  computed: {
+    hasAuth () { return this.isLoggedIn() === true }
+  },
   methods: {
     isLoggedIn () {
+      console.log('checking login')
       return isLoggedIn()
     },
     getPublicStartupBattles () {

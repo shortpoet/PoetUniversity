@@ -7,6 +7,7 @@ import Callback from '@/components/Auth/Callback'
 import Unauthorized from '@/components/Auth/Unauthorized'
 // import PrivateBattles from '@/components/Battles/PrivateBattles'
 import PublicBattles from '@/components/Battles/PublicBattles'
+import BattlesCallback from '@/components/Battles/BattlesCallback'
 
 import { requireAuth } from '@/utils/auth'
 Vue.use(VueRouter)
@@ -75,7 +76,8 @@ const routes = [
       },
       {
         path: '/battles/battles-callback',
-        component: () => import(/* webpackChunkName: "battlesCallback" */ '@/components/Battles/BattlesCallback.vue')
+        // component: () => import(/* webpackChunkName: "battlesCallback" */ '../components/Battles/BattlesCallback.vue')
+        component: BattlesCallback
       }
     ]
   }]

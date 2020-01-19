@@ -8,8 +8,8 @@ const ACCESS_TOKEN_KEY = 'access_token'
 const CLIENT_ID = 'BaXDXqmp6XX6U9UuHSC5dmrnJt6gSlJh'
 const CLIENT_DOMAIN = 'shortpoet.auth0.com/'
 const REDIRECT = 'https://localhost:8080/battles/battles-callback'
-const SCOPE = 'openid profile email'
-const AUDIENCE = 'battles-api'
+const SCOPE = 'openid profile email battles-api'
+const AUDIENCE = 'https://localhost:3333'
 
 var auth = new auth0.WebAuth({
   clientID: CLIENT_ID,
@@ -47,6 +47,7 @@ export function requireAuth (to, from, next) {
 }
 
 export function getIdToken () {
+  console.log(localStorage)
   return localStorage.getItem(ID_TOKEN_KEY)
 }
 
@@ -81,7 +82,10 @@ export function setIdToken () {
 }
 
 export function isLoggedIn () {
+  console.log('checking login from auth')
   const idToken = getIdToken()
+  console.log(idToken)
+  // console.log(!isTokenExpired(idToken))
   return !!idToken && !isTokenExpired(idToken)
 }
 
@@ -97,5 +101,6 @@ function getTokenExpirationDate (encodedToken) {
 
 function isTokenExpired (token) {
   const expirationDate = getTokenExpirationDate(token)
+  console.log(expirationDate)
   return expirationDate < new Date()
 }

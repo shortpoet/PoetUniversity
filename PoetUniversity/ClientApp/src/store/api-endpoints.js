@@ -7,7 +7,9 @@ export const auth = {
   // PARTS @/store/modules/StoreParts.js
   SERVICES_API: '1/api/Services',
   IDENTITY_API: '1/Identity',
-  WEATHER_API: '1/WeatherForecast'
+  WEATHER_API: '1/WeatherForecast',
+  BATTLES_API: '1/battles',
+  PRIVATE_BATTLES_API: '1/battles/private-battles'
 }
 export const parts = {
   // PARTS @/store/modules/StoreParts.js

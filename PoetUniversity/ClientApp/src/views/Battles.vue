@@ -10,15 +10,38 @@
       </b-col>
     </b-row>
     <hr />
-    <PublicBattles />
+    <!-- <PublicBattles /> -->
+    <div>
+    <BattleNav />
+    <h3 class="text-center">Daily Startup Battles</h3>
+    <hr/>
+    <b-button @click="publicApi">Public Battles</b-button>
+    <Battle
+      v-if="publicLoaded"
+      :battles="publicBattles"
+    />
+    <div class="col-sm-12">
+      <div class="jumbotron text-center" v-if="hasAuth">
+        <h2>View Private Startup Battles</h2>
+        <router-link class="btn btn-lg btn-success" to="/private-battles">Private Startup Battles</router-link>
+      </div>
+      <div class="jumbotron text-center" v-else>
+        <h2>Get Access to Private Startup Battles by Logging In</h2>
+      </div>
+    </div>
+  </div>
+
   </b-container>
 </template>
 
 <script>
-// import axios from 'axios'
-// import { mapGetters } from 'vuex'
-// import endpoints from '@/store/api-endpoints'
-import PublicBattles from '@/components/Battles/PublicBattles'
+import axios from 'axios'
+import { mapGetters } from 'vuex'
+import endpoints from '@/store/api-endpoints'
+// import PublicBattles from '@/components/Battles/PublicBattles'
+import BattleNav from '@/components/Battles/BattleNav'
+import Battle from '@/components/Battles/Battle'
+// import TableComp from '@/components/TableComp'
 
 export default {
   name: 'Battles',
@@ -26,30 +49,73 @@ export default {
     msg: String
   },
   components: {
-    PublicBattles
+    BattleNav,
+    Battle
   },
   data () {
     return {
-      dzoneUrl: 'https://dzone.com/articles/vuejs-2-authentication-tutorial-part-3'
+      dzoneUrl: 'https://dzone.com/articles/vuejs-2-authentication-tutorial-part-3',
+      publicBattles: ['no data yet'],
+      publicLoaded: false,
+      privateBattles: [],
+      privateLoaded: false
     }
   },
   computed: {
-    // ...mapGetters('auth', ['getUser']),
-    // weatherUrl () { return endpoints.index.BACKEND_PREFIX_DEV + endpoints.auth.WEATHER_API },
-    // identityUrl () { return endpoints.index.BACKEND_PREFIX_DEV + endpoints.auth.IDENTITY_API },
-    // servicesUrl () { return endpoints.index.BACKEND_PREFIX_DEV + endpoints.auth.SERVICES_API },
-    // headers () {
-    //   return {
-    //     'headers': {
-    //       'Authorization': 'Bearer ' + this.getUser.access_token
-    //     }
-    //   }
-    // }
+    ...mapGetters('auth0', ['getUser']),
+    publicUrl () { return endpoints.index.BACKEND_PREFIX_DEV + endpoints.auth.BATTLES_API },
+    privateUrl () { return endpoints.index.BACKEND_PREFIX_DEV + endpoints.auth.PRIVATE_BATTLES_API },
+    headers () {
+      return {
+        'headers': {
+          'Authorization': 'Bearer ' + this.getUser.access_token
+        }
+      }
+    },
+    hasAuth () {
+      return this.getUser !== null
+    }
     // showWeather () {},
     // show () {},
     // showWeather () {},
   },
   methods: {
+    async publicApi () {
+      try {
+        console.log('hitting public battles api')
+        console.log(this.publicUrl)
+        const response = await axios.get(this.publicUrl)
+        console.log(response)
+        console.log(this.publicUrl)
+        this.publicBattles = response.data
+        this.publicLoaded = true
+        console.log('weather')
+        console.log(this.publicBattles)
+      } catch (err) {
+        this.publicBattles.push('Ooops!' + err)
+      }
+    },
+    async privateApi () {
+      try {
+        const response = await axios.get(this.privateUrl, this.headers)
+        console.log(response)
+        this.privateBattles = response.data
+        this.privateLoaded = true
+        console.log('identity')
+        console.log(this.privateBattles)
+      } catch (err) {
+        this.privateBattles.push('Ooops!' + err)
+      }
+    },
+    login () {
+      this.$store.dispatch('auth/login')
+    },
+    logout () {
+      this.$store.dispatch('auth/logout')
+    }
+  },
+  beforeMount () {
+    this.publicApi()
   }
 }
 </script>

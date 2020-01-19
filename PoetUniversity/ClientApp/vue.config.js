@@ -4,11 +4,14 @@
 
 // https://stackoverflow.com/questions/21397809/create-a-trusted-self-signed-ssl-cert-for-localhost-for-use-with-express-node
 // openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout cert.key -out cert.pem -config req.cnf -sha256
+// setup file at bottom
 
 // https://www.teilin.net/2018/07/05/self-signed-certificate-and-configuring-identityserver-4-with-certificate/
 // double first slash -> https://stackoverflow.com/questions/54258996/git-bash-string-parameter-with-at-start-is-being-expanded-to-a-file-path
 // openssl req -x509 -newkey rsa:4096 -sha256 -nodes -keyout poet.key -out poet.crt -subj "//CN=PoetUniversity" -days 3650
 // openssl pkcs12 -export -out poet.pfx -inkey poet.key -in poet.crt -certfile poet.crt
+
+// navigating to api url also is a way to enable exemption 
 
 const fs = require('fs')
 const path = require("path")
@@ -37,3 +40,22 @@ module.exports = {
   },
 }
 
+// [req]
+// distinguished_name = PoetUniversity
+// x509_extensions = v3_req
+// prompt = no
+// [PoetUniversity]
+// C = US
+// ST = Missouri
+// L = Saint Louis
+// O = PoetUniversity
+// OU = Vue Server
+// CN = www.localhost.com
+// [v3_req]
+// keyUsage = critical, digitalSignature, keyAgreement
+// extendedKeyUsage = serverAuth
+// subjectAltName = @alt_names
+// [alt_names]
+// DNS.1 = www.localhost.com
+// DNS.2 = localhost.com
+// DNS.3 = localhost

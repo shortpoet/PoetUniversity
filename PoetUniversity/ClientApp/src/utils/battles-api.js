@@ -6,11 +6,11 @@ const BASE_URL = 'https://localhost:3333'
 export { getPublicStartupBattles, getPrivateStartupBattles }
 
 function getPublicStartupBattles () {
-  const url = `${BASE_URL}/api/battles/public`
+  const url = `${BASE_URL}/battles`
   return axios.get(url).then(response => response.data)
 }
 
 function getPrivateStartupBattles () {
-  const url = `${BASE_URL}/api/battles/private`
+  const url = `${BASE_URL}/battles/private`
   return axios.get(url, { headers: { Authorization: `Bearer ${getAccessToken()}` } }).then(response => response.data)
 }
