@@ -11,6 +11,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 
 using PoetUniversity.Data;
 using VueCliMiddleware;
@@ -34,14 +35,24 @@ namespace PoetUniversity
     {
       services.AddRazorPages();
 
-      // services.AddMvc(options => {
-      //   options.EnableEndpointRouting = false;
-      // });
+      services.AddMvc(options => {
+        options.EnableEndpointRouting = false;
+      });
       services.AddControllersWithViews();
 
       // added to enable identity controller token check
-      services.AddAuthentication("Bearer")
-        .AddJwtBearer("Bearer", options =>
+      // https://stackoverflow.com/questions/49694383/use-multiple-jwt-bearer-authentication
+
+      // services.AddAuthentication("Bearer")
+      services.AddAuthentication()
+        .AddJwtBearer("Auth0", options =>
+        {
+            options.Authority = "https://shortpoet.auth0.com/";
+            options.RequireHttpsMetadata = false;
+
+            options.Audience = "https://localhost:3333";
+        })
+        .AddJwtBearer("Identity", options =>
         {
             options.Authority = "https://localhost:5003";
             options.RequireHttpsMetadata = false;
@@ -79,7 +90,26 @@ namespace PoetUniversity
               // options.Scope.Add("custom.profile.test");
               options.Scope.Add("offline_access");
           });
-      services.AddAuthorization();
+      services.AddAuthorization(options =>
+      {
+        options.DefaultPolicy = new AuthorizationPolicyBuilder()
+          .RequireAuthenticatedUser()
+          .AddAuthenticationSchemes("Identity", "Auth0")
+          // .AddAuthenticationSchemes("Identity")
+          .Build();
+
+        // options.AddPolicy("Auth0", new AuthorizationPolicyBuilder()
+        //   .RequireAuthenticatedUser()
+        //   .AddAuthenticationSchemes("Auth0")
+        //   // .RequireClaim("role", "admin")
+        //   .Build());
+
+        // options.AddPolicy("Identity", new AuthorizationPolicyBuilder()
+        //   .RequireAuthenticatedUser()
+        //   .AddAuthenticationSchemes("Auth0")
+        //   // .RequireClaim("role", "admin")
+        //   .Build());
+      });
 
       services.AddDbContext<SchoolContext>(options =>
         options.UseSqlite(Configuration.GetConnectionString("SchoolContext")));

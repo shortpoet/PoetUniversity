@@ -2,8 +2,9 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import VueCookies from 'vue-cookies'
 
-import StoreAuth from '@/store/modules/StoreAuth'
+import StoreDoor from '@/store/modules/StoreDoor'
 import StoreAuth0 from '@/store/modules/StoreAuth0'
+import StoreMoat from '@/store/modules/StoreMoat'
 import StoreParts from '@/store/modules/StoreParts'
 
 import {
@@ -30,7 +31,8 @@ export const rootGetters = {
 export default new Vuex.Store({
   modules: {
     parts: StoreParts,
-    auth: StoreAuth,
+    door: StoreDoor,
+    moat: StoreMoat,
     auth0: StoreAuth0
   },
   state: {

@@ -56,7 +56,7 @@ export default {
         redirect_uri: 'https://localhost:8080/callback.html',
         response_type: 'code',
         scope: 'openid profile api1',
-        post_logout_redirect_uri: 'http://localhost:8080/'
+        post_logout_redirect_uri: 'https://localhost:8080/'
       },
       repoUrl: 'https://github.com/IdentityServer/IdentityServer4/tree/master/samples/Quickstarts/4_JavaScriptClient',
       docsUrl: 'http://docs.identityserver.io/en/latest/quickstarts/4_javascript_client.html'

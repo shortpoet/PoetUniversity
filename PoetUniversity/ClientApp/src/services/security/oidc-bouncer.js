@@ -1,5 +1,5 @@
+// import Oidc, { UserManager } from 'oidc-client'
 import Oidc from 'oidc-client'
-
 var mgr = new Oidc.UserManager({
   authority: 'https://localhost:5003',
   client_id: 'poet',

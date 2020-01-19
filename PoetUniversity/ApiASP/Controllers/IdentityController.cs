@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace ApiASP.Controllers
 {
   [Route("identity")]
-  [Authorize]
+  [Authorize(AuthenticationSchemes = "Identity")]
   public class IdentityController : ControllerBase
   {
     [HttpGet]

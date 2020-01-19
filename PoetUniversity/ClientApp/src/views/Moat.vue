@@ -1,14 +1,5 @@
 <template>
-  <b-container class="door">
-    <b-row>
-      <b-col>
-        <div>
-          <h5>
-            This is an extension of the code found in Richard Bank's fine <b-link target="_blank" :href="docsUrl">Blog Post Series</b-link> on securing a vue app with IdentityServer.
-          </h5>
-        </div>
-      </b-col>
-    </b-row>
+  <b-container class="moat">
     <hr />
     <b-row>
       <b-col>
@@ -20,9 +11,21 @@
     <hr />
     <b-row>
       <b-col>
-      <b-button :disabled="false" @click='login'>Login</b-button>
+      <b-button :disabled="false" @click='_login'>Login</b-button>
       <b-button :disabled="false" @click='logout'>Logout</b-button>
       <b-button :disabled="true">Future</b-button>
+      </b-col>
+    </b-row>
+    <hr />
+    <b-row>
+      <b-col>
+        <p>You found your way to the moat. Great job.</p>
+        <pre>
+          Authenticated: {{ user.isAuthenticated }}
+          Email Address: {{ user.email }}
+          User Name: {{ user.userName }}
+          Name: {{ user.name }}
+        </pre>
       </b-col>
     </b-row>
     <b-row>
@@ -80,12 +83,12 @@
 
 <script>
 import axios from 'axios'
-import { mapGetters } from 'vuex'
+import { mapState, mapGetters, mapActions } from 'vuex'
 import endpoints from '@/store/api-endpoints'
 import TableComp from '@/components/TableComp'
 
 export default {
-  name: 'Door',
+  name: 'Moat',
   props: {
     msg: String
   },
@@ -104,7 +107,9 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('door', ['getUser']),
+    ...mapState('moat', ['user']),
+    ...mapGetters('moat', ['getUser']),
+    ...mapActions('moat', ['login', 'logout']),
     weatherUrl () { return endpoints.index.BACKEND_PREFIX_DEV + endpoints.auth.WEATHER_API },
     identityUrl () { return endpoints.index.BACKEND_PREFIX_DEV + endpoints.auth.IDENTITY_API },
     servicesUrl () { return endpoints.index.BACKEND_PREFIX_DEV + endpoints.auth.SERVICES_API },
@@ -120,6 +125,9 @@ export default {
     // showWeather () {},
   },
   methods: {
+    _login: function () {
+      this.$store.dispatch('moat/login', 'moat')
+    },
     async weatherApi () {
       try {
         const response = await axios.get(this.weatherUrl, this.headers)
@@ -165,12 +173,6 @@ export default {
       } catch (err) {
         this.services.push('Ooops!' + err)
       }
-    },
-    login () {
-      this.$store.dispatch('door/login')
-    },
-    logout () {
-      this.$store.dispatch('door/logout')
     }
   }
 }
@@ -190,5 +192,13 @@ li {
 }
 a {
   color: #42b983;
+}
+pre {
+  width: 400px;
+  margin: 0 auto;
+  padding: 1rem;
+  background-color: #fff3cd;
+  border-radius: 5px;
+  text-align: left;
 }
 </style>

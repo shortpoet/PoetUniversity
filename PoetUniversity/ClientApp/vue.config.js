@@ -11,10 +11,10 @@
 // openssl req -x509 -newkey rsa:4096 -sha256 -nodes -keyout poet.key -out poet.crt -subj "//CN=PoetUniversity" -days 3650
 // openssl pkcs12 -export -out poet.pfx -inkey poet.key -in poet.crt -certfile poet.crt
 
-// navigating to api url also is a way to enable exemption 
+// navigating to api url also is a way to enable exemption
 
 const fs = require('fs')
-const path = require("path")
+const path = require('path')
 module.exports = {
   configureWebpack: {
     devtool: 'source-map'
@@ -32,12 +32,12 @@ module.exports = {
       // key: fs.readFileSync('../../../../certs/PoetUniversityCerts/cert.key'),
       // cert: fs.readFileSync('../../../../certs/PoetUniversityCerts/cert.pem')
       // key: fs.readFileSync(path.resolve(__dirname, './server/key.pem')),
-      // cert: fs.readFileSync(path.resolve(__dirname, './server/cert.pem'))    
+      // cert: fs.readFileSync(path.resolve(__dirname, './server/cert.pem'))
       key: fs.readFileSync(path.resolve(__dirname, '../../../../certs/PoetUniversityCerts/cert.key')),
-      cert: fs.readFileSync(path.resolve(__dirname, '../../../../certs/PoetUniversityCerts/cert.pem'))    
+      cert: fs.readFileSync(path.resolve(__dirname, '../../../../certs/PoetUniversityCerts/cert.pem'))
     }
     // hotOnly: false,
-  },
+  }
 }
 
 // [req]

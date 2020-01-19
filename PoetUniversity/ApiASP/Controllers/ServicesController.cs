@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace ApiASP.Controllers
 {
 [Route("api/[controller]")] [ApiController]
-[Authorize]
+  [Authorize(AuthenticationSchemes = "Identity")]
 public class ServicesController : ControllerBase
 {
   [HttpGet]

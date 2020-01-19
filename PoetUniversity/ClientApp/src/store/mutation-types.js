@@ -10,3 +10,8 @@ export const SET_USER = 'SET_USER'
 // AUTH0 @/store/modules/StoreAuth0.js
 export const SET_AUTH0_STATE = 'SET_AUTH0_STATE'
 export const SET_AUTH0_USER = 'SET_AUTH0_USER'
+
+// MOAT @/store/modules/StoreAuth0.js
+export const SET_MOAT_STATE = 'SET_MOAT_STATE'
+export const SET_MOAT_USER = 'SET_MOAT_USER'
+export const RESET_MOAT_USER = 'RESET_MOAT_USER'
