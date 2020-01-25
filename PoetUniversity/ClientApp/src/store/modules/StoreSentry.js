@@ -67,18 +67,18 @@ export const actions = {
       console.log(manager)
       const user = await mgr.getUser()
       console.log(user)
-      // if (user) {
-      // // if (user && user.isAuthenticated) {
-      //   // if (user !== null && !user.expired) {
-      //   // commit(RESET_SENTRY_TOKEN_STATE, user.expired)
-      //   commit(SET_SENTRY_STATE, true)
-      //   commit(SET_SENTRY_USER, user)
-      //   console.info('Logged In: ', user)
-      // } else {
-      //   console.info('No user initially logged in.')
-      //   // here auto redirect to login
-      //   dispatch('login', returnPath)
-      // }
+      if (user) {
+      // if (user && user.isAuthenticated) {
+        // if (user !== null && !user.expired) {
+        // commit(RESET_SENTRY_TOKEN_STATE, user.expired)
+        commit(SET_SENTRY_STATE, true)
+        commit(SET_SENTRY_USER, user)
+        console.info('Logged In: ', user)
+      } else {
+        console.info('No user initially logged in.')
+        // here auto redirect to login
+        dispatch('login', returnPath)
+      }
     } catch (err) {
       console.log(err)
     }

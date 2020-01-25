@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '@/views/Home.vue'
 import Door from '@/views/Door.vue'
 // import Moat from '@/views/Moat.vue'
-import Sentry from '@/views/_Sentry.vue'
+import Sentry from '@/views/Sentry.vue'
 import Battles from '@/views/Battles.vue'
 import store from '@/store/index'
 import Callback from '@/components/Auth/Callback'
@@ -56,10 +56,10 @@ const checkAuth2 = function (to, from, next) {
     // TODO ? what is diff here ?
     // store.dispatch(`${p}/authenticate`, to.path).then(() => {
     console.log(to.fullPath)
-    // store.dispatch(`sentry/authenticate`, to.path).then(() => {
-    //   console.log('authenticating a protected url:' + to.path)
-    //   next()
-    // })
+    store.dispatch(`sentry/authenticate`, to.path).then(() => {
+      console.log('authenticating a protected url:' + to.path)
+      next()
+    })
   } else {
     // No auth required. We can navigate
     next()
@@ -90,10 +90,10 @@ const routes = [
   {
     path: '/sentry',
     name: 'sentry',
-    // meta: {
-    //   requiresAuth: true
-    // },
-    // beforeEnter: checkAuth2,
+    meta: {
+      requiresAuth: true
+    },
+    beforeEnter: checkAuth2,
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.

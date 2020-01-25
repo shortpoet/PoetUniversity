@@ -11,7 +11,7 @@
     <hr />
     <b-row>
       <b-col>
-      <b-button :disabled="false" @click='_login'>Login</b-button>
+      <b-button :disabled="false" @click='login'>Login</b-button>
       <b-button :disabled="false" @click='logout'>Logout</b-button>
       <b-button :disabled="true">Future</b-button>
       </b-col>
@@ -81,7 +81,7 @@
 
 <script>
 import axios from 'axios'
-import { mapState, mapGetters, mapActions } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 import endpoints from '@/store/api-endpoints'
 import TableComp from '@/components/TableComp'
 
@@ -106,7 +106,7 @@ export default {
   computed: {
     ...mapState('sentry', ['user']),
     ...mapGetters('sentry', ['getUser', 'getAuthState']),
-    ...mapActions('sentry', ['login', 'logout']),
+    // mapactions seems to force the login/auth
     weatherUrl () { return endpoints.index.BACKEND_PREFIX_DEV + endpoints.auth.WEATHER_API },
     identityUrl () { return endpoints.index.BACKEND_PREFIX_DEV + endpoints.auth.IDENTITY_API },
     servicesUrl () { return endpoints.index.BACKEND_PREFIX_DEV + endpoints.auth.SERVICES_API },
@@ -117,19 +117,23 @@ export default {
           'Authorization': 'Bearer ' + this.getUser.access_token
         }
       }
-    },
-    isLoggedIn () { return this.getAuthState }
-    // showWeather () {},
-    // show () {},
-    // showWeather () {},
+    }
+    // isLoggedIn () { return this.getAuthState }
+    // // showWeather () {},
+    // // show () {},
+    // // showWeather () {},
   },
   methods: {
-    // _login: function () {
-    //   this.$store.dispatch('sentry/login', 'sentry')
-    // },
+    login: function () {
+      this.$store.dispatch('sentry/login', 'sentry')
+    },
+    logout: function () {
+      this.$store.dispatch('sentry/logout', 'sentry')
+    },
     async weatherApi () {
       try {
-        const response = await axios.get(this.weatherUrl, this.headers)
+        console.log('weather api')
+        const response = await axios.get(this.weatherUrl)
         console.log(response)
         this.weather = response.data
         this.weatherLoaded = true
