@@ -8,6 +8,7 @@ import Battles from '@/views/Battles.vue'
 import store from '@/store/index'
 import Callback from '@/components/Auth/Callback'
 import Login from '@/components/Moat/Login'
+import Profile from '@/components/Sentry/Profile'
 import LoginCallback from '@/components/Moat/LoginCallback'
 import Unauthorized from '@/components/Auth/Unauthorized'
 // import PrivateBattles from '@/components/Battles/PrivateBattles'
@@ -93,12 +94,30 @@ const routes = [
     meta: {
       requiresAuth: true
     },
-    beforeEnter: checkAuth2,
+    beforeEnter: checkAuth,
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     // component: () => import(/* webpackChunkName: "sentry" */ '../views/Sentry.vue')
     component: Sentry
+    // children: [
+    //   {
+    //     path: '/sentry/profile',
+    //     name: 'profile',
+    //     // meta: {
+    //     //   requiresAuth: true
+    //     // },
+    //     component: Profile
+    //   }
+    // ]
+  },
+  {
+    path: '/sentry/profile',
+    name: 'profile',
+    // meta: {
+    //   requiresAuth: true
+    // },
+    component: Profile
   },
   { path: '/login', component: Login },
   { path: '/logincallback', component: LoginCallback },

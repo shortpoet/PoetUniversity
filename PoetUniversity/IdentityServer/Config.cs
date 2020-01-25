@@ -19,7 +19,7 @@ public static class Config
         new IdentityResources.OpenId(),
         new IdentityResources.Profile(),
         new IdentityResource("location", new[] { "location" }),
-        // new IdentityResources.Email(),
+        new IdentityResources.Email(),
         // new IdentityResources.Phone(),
         // new IdentityResource("custom.profile.test", new[] { JwtClaimTypes.Name, JwtClaimTypes.Email, JwtClaimTypes.EmailVerified, "location" }),
         // new IdentityResource {
@@ -234,6 +234,7 @@ public static class Config
         {
           IdentityServerConstants.StandardScopes.OpenId,
           IdentityServerConstants.StandardScopes.Profile,
+          "email",
           "location",
           "api1",
           "api2.full_access",

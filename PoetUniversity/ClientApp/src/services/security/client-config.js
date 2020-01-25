@@ -48,7 +48,7 @@ const config = {
     client_id: POET_ID,
     redirect_uri: JP_CALLBK,
     response_type: 'code',
-    scope: 'openid profile api1 sentry',
+    scope: 'openid profile api1 sentry email',
     post_logout_redirect_uri: SENTRY
   },
   A0_M: {
@@ -71,6 +71,23 @@ const config = {
   },
   A0_S: {
     userStore: new WebStorageStateStore({ store: window.localStorage }),
+    authority: AUTH0_DOMAIN,
+    client_id: AUTH0_ID,
+    redirect_uri: JP_CALLBK,
+    response_type: 'id_token token',
+    scope: 'openid profile email',
+    post_logout_redirect_uri: SENTRY,
+    filterProtocolClaims: true,
+    metadata: {
+      issuer: AUTH0_DOMAIN + '/',
+      authorization_endpoint: AUTH0_DOMAIN + '/authorize',
+      userinfo_endpoint: AUTH0_DOMAIN + '/userinfo',
+      end_session_endpoint: AUTH0_DOMAIN + '/v2/logout',
+      jwks_uri: AUTH0_DOMAIN + '/.well-known/jwks.json'
+    }
+  },
+  _IS4_S: {
+    // userStore: new WebStorageStateStore({ store: window.localStorage }),
     authority: IS4_DOMAIN,
     client_id: POET_ID,
     redirect_uri: JSC_CALLBK,

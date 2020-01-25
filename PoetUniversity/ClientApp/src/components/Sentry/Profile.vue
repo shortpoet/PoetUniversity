@@ -9,11 +9,7 @@
 </template>
 
 <script>
-import AuthService from '@/services/security/oidc-sentry.js'
-import { mapMutations } from 'vuex'
-import {
-  SET_MOAT_USER
-} from '@/store/mutation-types'
+import { mapState } from 'vuex'
 
 export default {
   name: 'Profile',
@@ -23,41 +19,18 @@ export default {
   },
   data () {
     return {
-      userName: '',
-      userEmail: '',
-      userPhoto: ''
     }
   },
   computed: {
-    ...mapMutations('moat', [SET_MOAT_USER])
+    ...mapState('sentry', ['user']),
+    userName () { return this.user.profile.name },
+    userEmail () { return this.user.profile.email },
+    userPhoto () { return this.user.profile.picture }
   },
   methods: {
-    login () {
-      console.log('starting login process from login.vue')
-      const authService = new AuthService()
-      authService.getUser()
-        .then(user => {
-          // Will return immediately on our way to OAuth
-
-          console.info('Grabbed login info from local data: ', user.name, user.userName)
-          try {
-            this.userName = user.profile.name
-            this.userEmail = user.profile.email
-            this.userPhoto = user.profile.picture
-          } catch (e) {
-            console.warn('This Broke')
-            console.error(e)
-          }
-        })
-        .catch(er => {
-          console.warn('This Broke')
-          console.error(er)
-        })
-    }
   },
   mounted () {
-    console.log('#### mount from login.vue ####')
-    this.login()
+    console.log(this.$store)
   }
 }
 </script>

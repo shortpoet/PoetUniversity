@@ -1,6 +1,5 @@
 // import axios from 'axios'
 import AuthService from '@/services/security/oidc-sentry.js'
-import mgr from '@/services/security/oidc-bouncer.js'
 // import AuthUser from '@/services/security/AuthUser'
 // import router from '@/router/index'
 import {
@@ -52,7 +51,7 @@ export const actions = {
   },
   logout ({ commit, state, rootGetters, dispatch }) {
     const authService = new AuthService()
-    authService.login()
+    authService.logout()
     // commit(SET_USER, user)
   },
   // tokenExpiredCallback ({ commit, state, rootGetters, dispatch }, payload) {
@@ -63,9 +62,7 @@ export const actions = {
     console.log('start sentry authenticate')
     try {
       const authService = new AuthService()
-      const manager = await authService.getUserManager()
-      console.log(manager)
-      const user = await mgr.getUser()
+      const user = await authService.getUser()
       console.log(user)
       if (user) {
       // if (user && user.isAuthenticated) {

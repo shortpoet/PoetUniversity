@@ -19,11 +19,11 @@
     <hr />
     <b-row>
       <b-col>
-        <!-- <div class="profile-link">
-          <p v-if="isLoggedIn">User: <router-link to="/profile">{{ user.username }}</router-link></p>
+        <div class="profile-link">
+          <p v-if="isLoggedIn">User: <router-link to="/sentry/profile">{{ user.profile.name }}</router-link></p>
           <button @click="login" v-if="!isLoggedIn">Login</button>
           <button @click="logout" v-if="isLoggedIn">Logout</button>
-        </div> -->
+        </div>
       </b-col>
     </b-row>
     <b-row>
@@ -117,8 +117,8 @@ export default {
           'Authorization': 'Bearer ' + this.getUser.access_token
         }
       }
-    }
-    // isLoggedIn () { return this.getAuthState }
+    },
+    isLoggedIn () { return this.getAuthState }
     // // showWeather () {},
     // // show () {},
     // // showWeather () {},
@@ -177,6 +177,9 @@ export default {
         this.services.push('Ooops!' + err)
       }
     }
+  },
+  mounted: function () {
+    console.log(this.$store)
   }
 }
 </script>
