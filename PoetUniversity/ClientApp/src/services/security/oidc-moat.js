@@ -1,6 +1,7 @@
-import { UserManager, WebStorageStateStore } from 'oidc-client'
+// import { UserManager, WebStorageStateStore } from 'oidc-client'
+import { UserManager } from 'oidc-client'
 import AuthUser from './AuthUser'
-
+import config from './client-config'
 /**
  * Auth Service. A simpler interface to the Authentication Service and a place to apply an Authorization Service.
  */
@@ -94,7 +95,7 @@ export class AuthenticationService {
   }
 
   async getUserManager (returnPath) {
-    let returnTo = returnPath || '/'
+    // let returnTo = returnPath || '/'
     let clientRoot = window.location.protocol + '//' + window.location.host
 
     if (!this._oidcSettings) {
@@ -102,20 +103,23 @@ export class AuthenticationService {
       let settings = {
         authority: clientData.clientUrl,
         client_id: clientData.clientId,
-        redirect_uri: `${clientRoot}${this._callbackUrl}?returnTo=${encodeURIComponent(returnTo)}`,
-        post_logout_redirect_uri: `${clientRoot}/`,
-        response_type: 'code',
+        // redirect_uri: `${clientRoot}${this._callbackUrl}?returnTo=${encodeURIComponent(returnTo)}`,
+        redirect_uri: `${clientRoot}${this._callbackUrl}`,
+        // post_logout_redirect_uri: `${clientRoot}/${returnTo}`,
+        post_logout_redirect_uri: `${clientRoot}/moat`,
+        response_type: config.IS4_M.response_type,
         // response_type: 'code id_token', // hybrid flow
         // scope: 'openid profile api1',
-        scope: 'openid profile battles-api',
-        audience: 'https://localhost:3333',
-        userStore: new WebStorageStateStore({ store: localStorage })
+        scope: config.IS4_M.scope,
+        audience: config.IS4_M.audience
+        // userStore: new WebStorageStateStore({ store: localStorage })
       }
       this._oidcSettings = settings
     }
 
     // reset the returnTo attribute because if it gets cached, we get redirected incorrectly
-    this._oidcSettings.redirect_uri = `${clientRoot}${this._callbackUrl}?returnTo=${encodeURIComponent(returnTo)}`
+    // this._oidcSettings.redirect_uri = `${clientRoot}${this._callbackUrl}?returnTo=${encodeURIComponent(returnTo)}`
+    this._oidcSettings.redirect_uri = `${clientRoot}${this._callbackUrl}`
 
     let userManager = new UserManager(this._oidcSettings)
     if (this._tokenExpiredCallback) {
@@ -150,8 +154,8 @@ export class AuthenticationService {
   getClientEnvironment () {
     // The regular testing sso config
     return {
-      clientId: 'BaXDXqmp6XX6U9UuHSC5dmrnJt6gSlJh',
-      clientUrl: 'shortpoet.auth0.com'
+      clientId: config.IS4_M.client_id,
+      clientUrl: config.IS4_M.authority
     }
   }
 

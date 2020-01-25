@@ -5,6 +5,7 @@ import VueCookies from 'vue-cookies'
 import StoreDoor from '@/store/modules/StoreDoor'
 import StoreAuth0 from '@/store/modules/StoreAuth0'
 import StoreMoat from '@/store/modules/StoreMoat'
+import StoreSentry from '@/store/modules/StoreSentry'
 import StoreParts from '@/store/modules/StoreParts'
 
 import {
@@ -33,6 +34,7 @@ export default new Vuex.Store({
     parts: StoreParts,
     door: StoreDoor,
     moat: StoreMoat,
+    sentry: StoreSentry,
     auth0: StoreAuth0
   },
   state: {

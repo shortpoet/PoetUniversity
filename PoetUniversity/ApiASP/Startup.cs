@@ -45,12 +45,20 @@ namespace PoetUniversity
 
       // services.AddAuthentication("Bearer")
       services.AddAuthentication()
+        // test if this other one works as well
+        // .AddJwtBearer("Auth0", options =>
+        // {
+        //     options.Authority = "https://shortpoet.auth0.com/";
+        //     options.RequireHttpsMetadata = false;
+
+        //     options.Audience = "https://localhost:3333";
+        // })
         .AddJwtBearer("Auth0", options =>
         {
             options.Authority = "https://shortpoet.auth0.com/";
             options.RequireHttpsMetadata = false;
 
-            options.Audience = "https://localhost:3333";
+            options.Audience = "https://localhost:5001/battles";
         })
         .AddJwtBearer("Identity", options =>
         {
@@ -84,6 +92,10 @@ namespace PoetUniversity
               options.SaveTokens = true;
 
               options.Scope.Add("api1");
+              options.Scope.Add("jsc");
+              options.Scope.Add("door");
+              options.Scope.Add("moat");
+              options.Scope.Add("sentry");
               // adding additional scope
               options.Scope.Add("api2.full_access");
               options.Scope.Add("location");

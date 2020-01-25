@@ -10,6 +10,7 @@
 
 <script>
 // import { mapGetters } from 'vuex'
+import Oidc from 'oidc-client'
 import mgr from '@/services/security/oidc-bouncer.js'
 
 export default {
@@ -37,12 +38,28 @@ export default {
       } catch (e) {
         this.$router.push({ name: 'Unauthorized' })
       }
+    },
+    redirect2 () {
+      new Oidc.UserManager({ response_mode: 'query' }).signinRedirectCallback()
+        .then(function () {
+          window.location = 'index.html'
+        }).catch(function (e) {
+          console.error(e)
+        })
     }
   },
   created: function () {
     console.log(this)
-    // debugger
+    debugger
     // this.redirect()
+    // this.redirect2()
+    new Oidc.UserManager({ response_mode: 'query' })
+      .signinRedirectCallback()
+      .then(function () {
+        window.location = 'index.html'
+      }).catch(function (e) {
+        console.error(e)
+      })
   }
 }
 </script>

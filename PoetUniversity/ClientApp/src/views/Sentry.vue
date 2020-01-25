@@ -1,5 +1,5 @@
 <template>
-  <b-container class="moat">
+  <b-container class="sentry">
     <hr />
     <b-row>
       <b-col>
@@ -19,13 +19,11 @@
     <hr />
     <b-row>
       <b-col>
-        <p>You found your way to the moat. Great job.</p>
-        <pre>
-          Authenticated: {{ user.isAuthenticated }}
-          Email Address: {{ user.email }}
-          User Name: {{ user.userName }}
-          Name: {{ user.name }}
-        </pre>
+        <!-- <div class="profile-link">
+          <p v-if="isLoggedIn">User: <router-link to="/profile">{{ user.username }}</router-link></p>
+          <button @click="login" v-if="!isLoggedIn">Login</button>
+          <button @click="logout" v-if="isLoggedIn">Logout</button>
+        </div> -->
       </b-col>
     </b-row>
     <b-row>
@@ -88,7 +86,7 @@ import endpoints from '@/store/api-endpoints'
 import TableComp from '@/components/TableComp'
 
 export default {
-  name: 'Moat',
+  name: 'Sentry',
   props: {
     msg: String
   },
@@ -102,33 +100,33 @@ export default {
       identity: [],
       identityLoaded: false,
       services: [],
-      servicesLoaded: false,
-      docsUrl: 'https://www.richard-banks.org/2018/11/securing-vue-with-identityserver-part1.html'
+      servicesLoaded: false
     }
   },
   computed: {
-    ...mapState('moat', ['user']),
-    ...mapGetters('moat', ['getUser']),
-    ...mapActions('moat', ['login', 'logout']),
+    ...mapState('sentry', ['user']),
+    ...mapGetters('sentry', ['getUser', 'getAuthState']),
+    ...mapActions('sentry', ['login', 'logout']),
     weatherUrl () { return endpoints.index.BACKEND_PREFIX_DEV + endpoints.auth.WEATHER_API },
     identityUrl () { return endpoints.index.BACKEND_PREFIX_DEV + endpoints.auth.IDENTITY_API },
     servicesUrl () { return endpoints.index.BACKEND_PREFIX_DEV + endpoints.auth.SERVICES_API },
     headers () {
-      console.log(this.getUser)
+      // console.log(this.getUser)
       return {
         'headers': {
           'Authorization': 'Bearer ' + this.getUser.access_token
         }
       }
-    }
+    },
+    isLoggedIn () { return this.getAuthState }
     // showWeather () {},
     // show () {},
     // showWeather () {},
   },
   methods: {
-    _login: function () {
-      this.$store.dispatch('moat/login', 'moat')
-    },
+    // _login: function () {
+    //   this.$store.dispatch('sentry/login', 'sentry')
+    // },
     async weatherApi () {
       try {
         const response = await axios.get(this.weatherUrl, this.headers)
@@ -153,7 +151,6 @@ export default {
     },
     async identityApi () {
       try {
-        console.log('hit id api from moat')
         const response = await axios.get(this.identityUrl, this.headers)
         console.log(response)
         this.identity = response.data

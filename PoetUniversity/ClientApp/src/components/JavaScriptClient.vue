@@ -40,6 +40,8 @@
 // import mgr from '@/services/security/oidc-bouncer.js'
 import Oidc from 'oidc-client'
 import axios from 'axios'
+import config from '@/services/security/client-config.js'
+// console.log(config.configIS4_JCS)
 
 export default {
   name: 'JavaScriptClient',
@@ -50,21 +52,13 @@ export default {
   },
   data () {
     return {
-      config: {
-        authority: 'https://localhost:5003',
-        client_id: 'poet',
-        redirect_uri: 'https://localhost:8080/callback.html',
-        response_type: 'code',
-        scope: 'openid profile api1',
-        post_logout_redirect_uri: 'https://localhost:8080/'
-      },
       repoUrl: 'https://github.com/IdentityServer/IdentityServer4/tree/master/samples/Quickstarts/4_JavaScriptClient',
       docsUrl: 'http://docs.identityserver.io/en/latest/quickstarts/4_javascript_client.html'
     }
   },
   computed: {
     mgr () {
-      return new Oidc.UserManager(this.config)
+      return new Oidc.UserManager(config.IS4_S)
     }
   },
   methods: {

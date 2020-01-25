@@ -77,7 +77,32 @@ public static class Config
           {
             Name = "api2.read_only",
             DisplayName = "Read only access to API 2"
-          }
+          },
+          new Scope
+          {
+            Name = "jsc",
+            DisplayName = "Javascript Client Scope"
+          },
+          new Scope
+          {
+            Name = "door",
+            DisplayName = "Door Client Scope"
+          },
+          new Scope
+          {
+            Name = "moat",
+            DisplayName = "Moat Client Scope"
+          },
+          new Scope
+          {
+            Name = "sentry",
+            DisplayName = "Sentry Client Scope"
+          },
+          new Scope
+          {
+            Name = "battles",
+            DisplayName = "Battles Client Scope"
+          },
         }
       }
     };
@@ -197,7 +222,7 @@ public static class Config
         AllowAccessTokensViaBrowser = true,
 
 
-        RedirectUris =           { "https://localhost:8080/callback.html", "https://localhost:8080/callback" },
+        RedirectUris =           { "https://localhost:8080/callback.html", "https://localhost:8080/callback2.html", "https://localhost:8080/callback", "https://localhost:8080/logincallback" },
         // RedirectUris =           { "https://localhost:8080/callback.html" },
         PostLogoutRedirectUris = { "https://localhost:8080/" },
         AllowedCorsOrigins =     { "https://localhost:8080" },
@@ -211,7 +236,12 @@ public static class Config
           IdentityServerConstants.StandardScopes.Profile,
           "location",
           "api1",
-          "api2.full_access"
+          "api2.full_access",
+          "jsc",
+          "door",
+          "moat",
+          "sentry",
+          "battles"
         }
       }
     };

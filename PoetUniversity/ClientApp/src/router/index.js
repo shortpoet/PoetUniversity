@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '@/views/Home.vue'
+import Door from '@/views/Door.vue'
 // import Moat from '@/views/Moat.vue'
+import Sentry from '@/views/_Sentry.vue'
 import Battles from '@/views/Battles.vue'
 import store from '@/store/index'
 import Callback from '@/components/Auth/Callback'
@@ -18,7 +20,7 @@ Vue.use(VueRouter)
 const checkAuth = function (to, from, next) {
   let p = to.path.replace('/', '')
   let isAuthenticated = store.getters[`${p}/getAuthState`]
-  console.log('#### before DOOR enter ####')
+  console.log(`#### before ${p} enter ####`)
   console.log(isAuthenticated)
   if (isAuthenticated) {
     // already signed in, we can navigate anywhere
@@ -39,6 +41,32 @@ const checkAuth = function (to, from, next) {
     next()
   }
 }
+const checkAuth2 = function (to, from, next) {
+  let isAuthenticated = store.getters[`sentry/getAuthState`]
+  console.log(`#### before sentry enter ####`)
+  console.log(isAuthenticated)
+  if (isAuthenticated) {
+    // already signed in, we can navigate anywhere
+    next()
+  } else if (to.matched.some(record => record.meta.requiresAuth)) {
+    next()
+    console.log(to)
+    // debugger
+    // authentication is required. Trigger the sign in process, including the return URI
+    // TODO ? what is diff here ?
+    // store.dispatch(`${p}/authenticate`, to.path).then(() => {
+    console.log(to.fullPath)
+    // store.dispatch(`sentry/authenticate`, to.path).then(() => {
+    //   console.log('authenticating a protected url:' + to.path)
+    //   next()
+    // })
+  } else {
+    // No auth required. We can navigate
+    next()
+  }
+}
+
+console.log(checkAuth2)
 
 const routes = [
   {
@@ -59,6 +87,19 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "moat" */ '../views/Moat.vue')
   },
+  {
+    path: '/sentry',
+    name: 'sentry',
+    // meta: {
+    //   requiresAuth: true
+    // },
+    // beforeEnter: checkAuth2,
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    // component: () => import(/* webpackChunkName: "sentry" */ '../views/Sentry.vue')
+    component: Sentry
+  },
   { path: '/login', component: Login },
   { path: '/logincallback', component: LoginCallback },
   {
@@ -71,7 +112,8 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "door" */ '../views/Door.vue')
+    // component: () => import(/* webpackChunkName: "door" */ '../views/Door.vue')
+    component: Door
   },
   {
     path: '/unauthorized',
